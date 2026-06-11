@@ -3,8 +3,25 @@ const STAGE_LABEL = { GROUP: "Group", R32: "Round of 32", R16: "Round of 16",
   QF: "Quarter-final", SF: "Semi-final", THIRD: "3rd Place", FINAL: "Final" };
 const KO_ORDER = ["R32", "R16", "QF", "SF", "FINAL"];
 const ROUND_SIZE = { R32: 32, R16: 16, QF: 8, SF: 4, FINAL: 2 };
-const COLORS = ["#ffd34d", "#5da9ff", "#3ddc84", "#ff5d73", "#c792ea", "#ffb86c",
-  "#7ee8fa", "#f97fd4", "#a3e635", "#94a3ff", "#ff9e9e", "#5ef0c0", "#e6c79c"];
+// race-line palette: tints/shades of the three accents + grays only
+const COLORS = ["#22c55e", "#3b82f6", "#ef4444", "#86efac", "#93c5fd", "#fca5a5",
+  "#15803d", "#1d4ed8", "#b91c1c", "#e9edf2", "#8a94a0", "#4ade80", "#60a5fa"];
+
+const FLAGS = {
+  "Mexico": "🇲🇽", "Czech Rep.": "🇨🇿", "Rep. of Korea": "🇰🇷", "South Africa": "🇿🇦",
+  "Switzerland": "🇨🇭", "Canada": "🇨🇦", "Qatar": "🇶🇦", "Bosnia/Herzeg.": "🇧🇦",
+  "Brazil": "🇧🇷", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Morocco": "🇲🇦", "Haiti": "🇭🇹",
+  "Turkey": "🇹🇷", "USA": "🇺🇸", "Australia": "🇦🇺", "Paraguay": "🇵🇾",
+  "Germany": "🇩🇪", "Ivory Coast": "🇨🇮", "Ecuador": "🇪🇨", "Curaçao": "🇨🇼",
+  "Netherlands": "🇳🇱", "Sweden": "🇸🇪", "Japan": "🇯🇵", "Tunisia": "🇹🇳",
+  "Belgium": "🇧🇪", "Egypt": "🇪🇬", "IR Iran": "🇮🇷", "New Zealand": "🇳🇿",
+  "Spain": "🇪🇸", "Uruguay": "🇺🇾", "Saudi Arabia": "🇸🇦", "Cape Verde": "🇨🇻",
+  "France": "🇫🇷", "Norway": "🇳🇴", "Senegal": "🇸🇳", "Iraq": "🇮🇶",
+  "Argentina": "🇦🇷", "Austria": "🇦🇹", "Algeria": "🇩🇿", "Jordan": "🇯🇴",
+  "Portugal": "🇵🇹", "Colombia": "🇨🇴", "DR Congo": "🇨🇩", "Uzbekistan": "🇺🇿",
+  "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Croatia": "🇭🇷", "Ghana": "🇬🇭", "Panama": "🇵🇦",
+};
+const flag = t => FLAGS[t] ?? "";
 
 let LB, PICKS, KALSHI;
 
@@ -30,30 +47,72 @@ function winnerProb(team) {
 }
 
 /* ---------- leaderboard ---------- */
+function sparkline(timeline) {
+  if (!timeline || timeline.length < 2) return "";
+  const pts = timeline.slice(-24).map(t => t.cum);
+  const w = 72, h = 22, max = Math.max(...pts), min = Math.min(...pts);
+  const span = max - min || 1;
+  const coords = pts.map((v, i) =>
+    `${(i / (pts.length - 1)) * w},${h - 2 - ((v - min) / span) * (h - 4)}`);
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <polyline points="${coords.join(" ")}"/></svg>`;
+}
+
+function rankDeltas() {
+  // rank movement vs. before each player's latest completed-match points
+  const deltas = {};
+  if (!LB.players.some(p => p.timeline.length)) return deltas;
+  const prevTotal = p => {
+    const t = p.timeline;
+    const prevCum = t.length > 1 ? t[t.length - 2].cum : 0;
+    return prevCum + p.bonus_points + p.award_points;
+  };
+  const prevOrder = [...LB.players].sort((a, b) => prevTotal(b) - prevTotal(a)
+    || a.name.localeCompare(b.name));
+  const prevRank = {};
+  prevOrder.forEach((p, i) => prevRank[p.name] = i + 1);
+  LB.players.forEach((p, i) => deltas[p.name] = prevRank[p.name] - (i + 1));
+  return deltas;
+}
+
 function renderLeaderboard() {
   const el = document.getElementById("leaderboard");
+  const maxTotal = Math.max(1, ...LB.players.map(p => p.total));
+  const deltas = rankDeltas();
   const rows = LB.players.map(p => {
     const wp = winnerProb(p.champion);
+    const d = deltas[p.name] ?? 0;
+    const deltaHtml = !Object.keys(deltas).length ? "" :
+      d > 0 ? `<span class="delta up">▲${d}</span>` :
+      d < 0 ? `<span class="delta down">▼${-d}</span>` :
+              `<span class="delta flat">—</span>`;
+    const ptsCls = v => v > 0 ? "" : " zero";
     return `
     <tr class="player top${p.rank}" data-name="${p.name}">
-      <td class="rank">${p.rank}</td>
-      <td>${p.name}</td>
-      <td class="total">${p.total}</td>
-      <td class="pts">${p.match_points}</td>
-      <td class="pts">${p.bonus_points}</td>
-      <td class="pts">${p.award_points}</td>
-      <td><span class="champ-badge">${p.champion ?? "—"}${
-        wp != null ? `<span class="champ-prob">${(wp * 100).toFixed(0)}%</span>` : ""
-      }</span></td>
+      <td><span class="rankbadge">${p.rank}</span></td>
+      <td class="who">${p.name}${deltaHtml}</td>
+      <td class="total"><span class="totalnum">${p.total}</span>
+        <div class="totalbar"><i style="width:${(p.total / maxTotal) * 100}%"></i></div></td>
+      <td class="pts match num${ptsCls(p.match_points)}">${p.match_points}</td>
+      <td class="pts num${ptsCls(p.bonus_points)}">${p.bonus_points}</td>
+      <td class="pts award num${ptsCls(p.award_points)}">${p.award_points}</td>
+      <td>${sparkline(p.timeline)}</td>
+      <td><div class="champchip">
+        <div class="row"><span class="flag">${flag(p.champion)}</span>
+          <span class="cname">${p.champion ?? "—"}</span>
+          ${wp != null ? `<span class="cprob">${(wp * 100).toFixed(0)}%</span>` : ""}</div>
+        ${wp != null ? `<div class="cbar"><i style="width:${wp * 100}%"></i></div>` : ""}
+      </div></td>
     </tr>
-    <tr class="detail-row" data-for="${p.name}" style="display:none"><td colspan="7">
+    <tr class="detail-row" data-for="${p.name}" style="display:none"><td colspan="8">
       ${detailHtml(p)}
     </td></tr>`;
   }).join("");
-  el.innerHTML = `<table class="lb">
-    <thead><tr><th>#</th><th>Player</th><th>Total</th><th>Match</th>
-    <th>Bonus</th><th>Awards</th><th>Champion pick · Kalshi odds</th></tr></thead>
-    <tbody>${rows}</tbody></table>
+  el.innerHTML = `<div class="lbwrap"><table class="lb">
+    <thead><tr><th>Rank</th><th>Player</th><th>Total</th><th class="num">Match</th>
+    <th class="num">Bonus</th><th class="num">Awards</th><th>Form</th>
+    <th>Champion Pick</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>
     <p class="note">Click a row for stage bonuses &amp; award picks.
     Match pts: 5 result · +2 exact score · +3 exact pens.</p>`;
   el.querySelectorAll("tr.player").forEach(tr => tr.addEventListener("click", () => {
@@ -66,7 +125,7 @@ function detailHtml(p) {
   const bonusRows = KO_ORDER.map(st => {
     const b = p.bonuses[st];
     const status = b.complete ? `<b class="hit">+${b.points}</b>`
-      : `<span class="miss">pending</span>`;
+      : `<span class="pend">pending</span>`;
     return `<tr><td>${STAGE_LABEL[st]}</td>
       <td>${b.correct_so_far}/${ROUND_SIZE[st]} teams</td><td>${status}</td></tr>`;
   }).join("");
@@ -100,12 +159,12 @@ function renderRace() {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: "nearest", intersect: false },
       scales: {
-        x: { ticks: { color: "#8e97c0", maxTicksLimit: 14, maxRotation: 60 },
-             grid: { color: "#1d2444" } },
-        y: { ticks: { color: "#8e97c0" }, grid: { color: "#1d2444" },
-             title: { display: true, text: "match points", color: "#8e97c0" } },
+        x: { ticks: { color: "#8a94a0", maxTicksLimit: 14, maxRotation: 60 },
+             grid: { color: "#1f2730" } },
+        y: { ticks: { color: "#8a94a0" }, grid: { color: "#1f2730" },
+             title: { display: true, text: "match points", color: "#8a94a0" } },
       },
-      plugins: { legend: { labels: { color: "#e8ecff", usePointStyle: true,
+      plugins: { legend: { labels: { color: "#e9edf2", usePointStyle: true,
         pointStyle: "circle", boxWidth: 8 } } },
     },
   });
@@ -155,7 +214,7 @@ function drawBracket(name) {
   document.getElementById("bracketview").innerHTML =
     `<div class="bracket">${cols}</div>
      <p class="champ-line">Predicted champion:
-       <b>🏆 ${pred.champion}</b>${wp != null ?
+       <b>${flag(pred.champion)} ${pred.champion}</b>${wp != null ?
        ` <span class="champ-prob">Kalshi ${(wp * 100).toFixed(0)}%</span>` : ""}</p>
      <p class="note"><span class="hit">green</span> = team really made this round ·
      <span style="color:var(--red)">red</span> = field set, team missed it</p>`;
@@ -166,7 +225,7 @@ function bteamRows(m, act) {
     let cls = "";
     if (act.teams.has(team)) cls = "right";
     else if (act.complete) cls = "wrong";
-    return `<div class="bteam ${cls}"><span class="nm">${team}</span>
+    return `<div class="bteam ${cls}"><span class="nm">${flag(team)} ${team}</span>
       <span class="sc">${sc ?? ""}${pen != null ? ` (${pen})` : ""}</span></div>`;
   };
   return `<div class="bmatch">${row(m.team1, m.score1, m.pen1)}
@@ -227,9 +286,9 @@ function matchCard(m) {
     const p1 = k.probs[m.team1] ?? 0, p2 = k.probs[m.team2] ?? 0, px = k.tie ?? 0;
     const tot = p1 + p2 + px || 1;
     odds = `<div class="oddsbar">
-        <div style="width:${(p1 / tot) * 100}%;background:var(--green)"></div>
-        <div style="width:${(px / tot) * 100}%;background:#39406b"></div>
-        <div style="width:${(p2 / tot) * 100}%;background:var(--red)"></div>
+        <div class="o1" style="width:${(p1 / tot) * 100}%"></div>
+        <div class="ox" style="width:${(px / tot) * 100}%"></div>
+        <div class="o2" style="width:${(p2 / tot) * 100}%"></div>
       </div>
       <div class="oddslabels"><span>${t1} ${(p1 * 100).toFixed(0)}%</span>
       <span>draw ${(px * 100).toFixed(0)}%</span>
@@ -287,13 +346,13 @@ function matchCard(m) {
       ${c.pensStr ? `<div class="ppens">${c.pensStr}</div>` : ""}
     </div>`).join("");
   const legend = isDone ? `<p class="legend">
-      <span class="sw" style="background:var(--mx)"></span>exact score
-      <span class="sw" style="background:var(--us)"></span>correct result
-      <span class="sw" style="background:#39406b"></span>miss</p>` : "";
+      <span class="sw" style="background:var(--green)"></span>exact score
+      <span class="sw" style="background:var(--blue)"></span>correct result
+      <span class="sw" style="background:#2a3440"></span>miss</p>` : "";
   return `<div class="mcard">
     <div class="mhead">
       <span class="stagechip">${STAGE_LABEL[m.stage]}</span>
-      <span class="mteams">${t1} vs ${t2}</span>${score}
+      <span class="mteams">${flag(m.team1)} ${t1} vs ${t2} ${flag(m.team2)}</span>${score}
       <span class="mmeta">${m.venue ?? ""}</span>
     </div>
     ${odds}
