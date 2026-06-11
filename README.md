@@ -1,6 +1,6 @@
 # 🏆 Chepta Cup — FIFA World Cup 2026 Prediction Leaderboard
 
-Live site: **https://nvelingker.github.io/fifa-preds/**
+Live site: **https://mkeoliya.github.io/fifa-preds/**
 
 13 friends filled in the [Hermann Baum WC2026 Excel predictor](https://hermann-baum.de/excel/WorldCup/)
 with full group-stage scores, knockout brackets, and award picks. This repo
