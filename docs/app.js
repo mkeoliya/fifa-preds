@@ -3,9 +3,9 @@ const STAGE_LABEL = { GROUP: "Group", R32: "Round of 32", R16: "Round of 16",
   QF: "Quarter-final", SF: "Semi-final", THIRD: "3rd Place", FINAL: "Final" };
 const KO_ORDER = ["R32", "R16", "QF", "SF", "FINAL"];
 const ROUND_SIZE = { R32: 32, R16: 16, QF: 8, SF: 4, FINAL: 2 };
-// race-line palette: tints/shades of the three accents + grays only
-const COLORS = ["#22c55e", "#3b82f6", "#ef4444", "#86efac", "#93c5fd", "#fca5a5",
-  "#15803d", "#1d4ed8", "#b91c1c", "#e9edf2", "#8a94a0", "#4ade80", "#60a5fa"];
+// race-line palette: shades of the three accents + dark neutrals (light bg)
+const COLORS = ["#16a34a", "#2563eb", "#dc2626", "#15803d", "#1d4ed8", "#b91c1c",
+  "#4ade80", "#60a5fa", "#f87171", "#14532d", "#1e3a8a", "#7f1d1d", "#334155"];
 
 const FLAGS = {
   "Mexico": "🇲🇽", "Czech Rep.": "🇨🇿", "Rep. of Korea": "🇰🇷", "South Africa": "🇿🇦",
@@ -150,7 +150,9 @@ function renderRace() {
     data: p.timeline.map(t => t.cum),
     borderColor: COLORS[i % COLORS.length],
     backgroundColor: COLORS[i % COLORS.length],
-    tension: 0.25, pointRadius: 0, borderWidth: 2.2,
+    tension: 0.25, borderWidth: 2.2,
+    pointRadius: 4, pointHoverRadius: 7, pointBorderColor: "#ffffff",
+    pointBorderWidth: 1.5,
   }));
   new Chart(document.getElementById("raceChart"), {
     type: "line",
@@ -159,12 +161,12 @@ function renderRace() {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: "nearest", intersect: false },
       scales: {
-        x: { ticks: { color: "#8a94a0", maxTicksLimit: 14, maxRotation: 60 },
-             grid: { color: "#1f2730" } },
-        y: { ticks: { color: "#8a94a0" }, grid: { color: "#1f2730" },
-             title: { display: true, text: "match points", color: "#8a94a0" } },
+        x: { ticks: { color: "#5d6a62", maxTicksLimit: 14, maxRotation: 60 },
+             grid: { color: "#e7eadd" } },
+        y: { ticks: { color: "#5d6a62" }, grid: { color: "#e7eadd" },
+             title: { display: true, text: "match points", color: "#5d6a62" } },
       },
-      plugins: { legend: { labels: { color: "#e9edf2", usePointStyle: true,
+      plugins: { legend: { labels: { color: "#17211a", usePointStyle: true,
         pointStyle: "circle", boxWidth: 8 } } },
     },
   });
@@ -362,12 +364,16 @@ function matchCard(m) {
   </div>`;
 }
 
-/* tabs */
+/* tabs — each carries its own accent color for the page */
+const TAB_ACCENT = { leaderboard: "green", race: "blue", brackets: "red",
+  matches: "green" };
 document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
   document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
   b.classList.add("active");
   document.getElementById(b.dataset.tab).classList.add("active");
+  document.body.dataset.accent = TAB_ACCENT[b.dataset.tab];
 }));
+document.body.dataset.accent = "green";
 
 load();
