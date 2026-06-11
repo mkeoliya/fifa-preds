@@ -96,11 +96,14 @@ def main() -> int:
     # index actual matches; key on stage + unordered team pair
     actual_by_key = {}
     completed = []
+    live = []
     for m in results["matches"]:
         if m["team1"] and m["team2"]:
             actual_by_key[(m["stage"], frozenset((m["team1"], m["team2"])))] = m
         if m["completed"]:
             completed.append(m)
+        elif m["state"] == "in" and m["score1"] is not None:
+            live.append(m)
     completed.sort(key=lambda m: m["date"])
 
     # real teams known per knockout round (for bonuses)
@@ -139,6 +142,26 @@ def main() -> int:
             }
             timeline.append({"date": m["date"], "cum": cum})
 
+        # provisional points for in-progress matches ("if it ended now");
+        # never added to official totals
+        live_pts = 0
+        per_match_live = {}
+        for m in live:
+            key = (m["stage"], frozenset((m["team1"], m["team2"])))
+            pick = pick_by_key.get(key)
+            pts, detail = score_match(pick, m) if pick else (0, [])
+            live_pts += pts
+            mid = f"{m['stage']}|{m['team1']}|{m['team2']}"
+            per_match_live[mid] = {
+                "points": pts, "detail": detail,
+                "pick": [pick.score1, pick.score2] if pick and
+                        pick.team1 == m["team1"] else
+                        [pick.score2, pick.score1] if pick else None,
+                "pick_pens": [pick.pen1, pick.pen2] if pick and
+                              pick.team1 == m["team1"] else
+                              [pick.pen2, pick.pen1] if pick else None,
+            }
+
         bonus_pts = 0
         bonuses = {}
         for stage, info in actual_round_teams.items():
@@ -168,9 +191,11 @@ def main() -> int:
             "bonus_points": bonus_pts,
             "award_points": award_pts,
             "total": match_pts + bonus_pts + award_pts,
+            "live_points": live_pts,
             "bonuses": bonuses,
             "awards": awards_detail,
             "per_match": per_match,
+            "per_match_live": per_match_live,
             "timeline": timeline,
         })
 

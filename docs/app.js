@@ -91,7 +91,9 @@ function renderLeaderboard() {
     <tr class="player top${p.rank}" data-name="${p.name}">
       <td><span class="rankbadge">${p.rank}</span></td>
       <td class="who">${p.name}${deltaHtml}</td>
-      <td class="total"><span class="totalnum">${p.total}</span>
+      <td class="total"><span class="totalnum">${p.total}</span>${
+        p.live_points > 0 ?
+        `<span class="ghost" title="provisional — if live matches ended now">+${p.live_points} live</span>` : ""}
         <div class="totalbar"><i style="width:${(p.total / maxTotal) * 100}%"></i></div></td>
       <td class="pts match num${ptsCls(p.match_points)}">${p.match_points}</td>
       <td class="pts num${ptsCls(p.bonus_points)}">${p.bonus_points}</td>
@@ -296,9 +298,11 @@ function matchCard(m) {
       <span>draw ${(px * 100).toFixed(0)}%</span>
       <span>${t2} ${(p2 * 100).toFixed(0)}%</span></div>`;
   }
+  const isLive = m.state === "in";
   const chips = LB.players.map(p => {
     const mid = `${m.stage}|${m.team1}|${m.team2}`;
-    const det = p.per_match[mid];
+    const det = p.per_match[mid] ??
+      (isLive ? (p.per_match_live ?? {})[mid] : undefined);
     let scoreStr = "—", pensStr = "", pts = null, cls = "";
     if (det && det.pick) {
       scoreStr = `${det.pick[0] ?? "·"}–${det.pick[1] ?? "·"}`;
@@ -323,7 +327,7 @@ function matchCard(m) {
     return { name: p.name, scoreStr, pensStr, pts, cls };
   });
 
-  const isDone = m.state === "post";
+  const isDone = m.state === "post" || isLive;
   let consensus = "";
   if (isDone) {
     chips.sort((a, b) => (b.pts ?? -1) - (a.pts ?? -1) ||
@@ -347,10 +351,11 @@ function matchCard(m) {
       <div class="pscore">${c.scoreStr}</div>
       ${c.pensStr ? `<div class="ppens">${c.pensStr}</div>` : ""}
     </div>`).join("");
-  const legend = isDone ? `<p class="legend">
+  const legend = isDone ? `<p class="legend">${isLive ?
+      "provisional — points settle at full time · " : ""}
       <span class="sw" style="background:var(--green)"></span>exact score
       <span class="sw" style="background:var(--blue)"></span>correct result
-      <span class="sw" style="background:#2a3440"></span>miss</p>` : "";
+      <span class="sw" style="background:#c4cab9"></span>miss</p>` : "";
   return `<div class="mcard">
     <div class="mhead">
       <span class="stagechip">${STAGE_LABEL[m.stage]}</span>

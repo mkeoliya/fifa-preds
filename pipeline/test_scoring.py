@@ -64,6 +64,22 @@ try:
     lb = json.loads((ROOT / "docs" / "data" / "leaderboard.json").read_text())
     k = next(p for p in lb["players"] if p["name"] == "Kutu")
     assert k["match_points"] == 21 + 5 + 2 + 3, k["match_points"]
+    # live provisional: in-progress match at Kutu's exact predicted score
+    # earns 7 provisional points but does NOT touch official totals
+    m2 = sim["matches"][2]
+    pick2 = next(p for p in kutu.matches
+                 if {p.team1, p.team2} == {m2["team1"], m2["team2"]})
+    s1 = pick2.score1 if pick2.team1 == m2["team1"] else pick2.score2
+    s2 = pick2.score2 if pick2.team1 == m2["team1"] else pick2.score1
+    m2.update(score1=s1, score2=s2, state="in", completed=False)
+    RESULTS.write_text(json.dumps(sim))
+    subprocess.run([sys.executable, str(ROOT / "pipeline" / "scoring.py")],
+                   check=True)
+    lb = json.loads((ROOT / "docs" / "data" / "leaderboard.json").read_text())
+    k = next(p for p in lb["players"] if p["name"] == "Kutu")
+    assert k["live_points"] == 7, k["live_points"]
+    assert k["match_points"] == 31, k["match_points"]  # unchanged by live
+    assert len(k["per_match_live"]) == 1
     print("ALL SCORING TESTS PASSED")
 finally:
     RESULTS.write_text(backup.read_text())
