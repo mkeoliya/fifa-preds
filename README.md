@@ -2,7 +2,7 @@
 
 Live site: **https://mkeoliya.github.io/fifa-preds/**
 
-13 friends filled in the [Hermann Baum WC2026 Excel predictor](https://hermann-baum.de/excel/WorldCup/)
+14 friends filled in the [Hermann Baum WC2026 Excel predictor](https://hermann-baum.de/excel/WorldCup/)
 with full group-stage scores, knockout brackets, and award picks. This repo
 parses those workbooks, pulls live results from ESPN's public scoreboard API
 and market odds from Kalshi, scores everyone, and publishes a leaderboard via
@@ -52,4 +52,5 @@ docs/            static frontend served by GitHub Pages
   Actions tab, or run the three pipeline scripts locally and push.
 * Two known blank picks (Shaun match 61, Vui match 54) score 0 for those
   matches. Missing award picks default to Kutu's per group decision
-  (JJ, Mayukh, Snacc, Vui) with a custom override for Majank (see parser.py).
+  (JJ, Mayukh); Majank, Vui, and Snacc have custom overrides supplied via
+  chat (see AWARD_OVERRIDES in parser.py).

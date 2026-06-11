@@ -30,6 +30,7 @@ NAME_MAP = {
     "KakuPred": "Kaku",
     "KutuPreds": "Kutu",
     "MajankPreds": "Majank",
+    "MannaWulKup": "Manna",
     "Mayukh_preds": "Mayukh",
     "Sexy Rijo Preds": "Sexy Rijo",
     "Shaun Preds": "Shaun",
@@ -46,9 +47,21 @@ AWARD_OVERRIDES = {
         golden_glove="Jordan Pickford",
         young_player="Lamine Yamal",
     ),
+    "Vui": AwardPicks(
+        golden_ball="Messi",
+        golden_boot="Mbappe",
+        golden_glove="Martinez",
+        young_player="Mainoo",
+    ),
+    "Snacc": AwardPicks(
+        golden_ball="Ousmane Dembele",
+        golden_boot="Harry Kane",
+        golden_glove="Emiliano Martinez",
+        young_player="Lamine Yamal",
+    ),
 }
 # Per group decision: anyone else with no award picks defaults to Kutu's.
-# (Applies to Snacc, Vui — missing Awards sheet — and JJ, Mayukh — blank sheet.)
+# (Applies to JJ and Mayukh, whose Awards sheets are blank.)
 
 # Group stage grid: 12 column-blocks, first col of each block holds match_no,
 # +1 venue/team1, +2 team2. Row anchors for the 6 match rows per column.

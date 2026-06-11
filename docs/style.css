@@ -38,8 +38,8 @@ body {
 
 /* ---------- header ---------- */
 header { text-align: center; padding: 34px 12px 0; }
-.trophy { font-size: 3.2rem; display: block; line-height: 1;
-  filter: drop-shadow(0 8px 18px rgba(23, 43, 30, .18)); }
+.trophy { height: 78px; display: inline-block;
+  filter: drop-shadow(0 8px 18px rgba(23, 43, 30, .22)); }
 h1 { margin: 6px 0 0; font-size: 2.1rem; font-weight: 800; letter-spacing: -.02em; }
 .sub { color: var(--muted); margin: 6px 0 0; font-size: .8rem;
   text-transform: uppercase; letter-spacing: .22em; font-weight: 600; }
@@ -254,7 +254,7 @@ tr.detail-row td { background: var(--s2); padding: 16px 18px; }
 
 @media (max-width: 640px) {
   h1 { font-size: 1.5rem; }
-  .trophy { font-size: 2.4rem; }
+  .trophy { height: 58px; }
   .tab { padding: 7px 12px; font-size: .78rem; }
   table.lb td { padding: 11px 9px; }
   .totalnum { font-size: 1.05rem; }
