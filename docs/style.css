@@ -1,0 +1,94 @@
+:root {
+  --bg: #0b0e1a;
+  --panel: #141a2e;
+  --panel2: #1b2340;
+  --text: #e8ecff;
+  --muted: #8e97c0;
+  --accent: #ffd34d;
+  --green: #3ddc84;
+  --red: #ff5d73;
+  --blue: #5da9ff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: radial-gradient(1200px 600px at 50% -100px, #1c2750, var(--bg));
+  color: var(--text); font-family: 'Sora', sans-serif; min-height: 100vh;
+}
+header { text-align: center; padding: 28px 12px 0; }
+h1 { margin: 0; font-size: 2.4rem; font-weight: 800; letter-spacing: 1px; }
+.sub { color: var(--muted); margin: 4px 0 0; }
+.updated { color: var(--muted); font-size: .75rem; margin: 6px 0 14px; font-family: 'JetBrains Mono', monospace; }
+nav#tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.tab {
+  background: var(--panel); color: var(--muted); border: 1px solid #283057;
+  padding: 8px 18px; border-radius: 999px; cursor: pointer; font-family: inherit;
+  font-size: .9rem; font-weight: 600; transition: all .15s;
+}
+.tab.active, .tab:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+main { max-width: 1100px; margin: 22px auto 40px; padding: 0 14px; }
+.panel { display: none; }
+.panel.active { display: block; }
+footer { text-align: center; color: var(--muted); font-size: .75rem; padding: 18px; }
+.note { color: var(--muted); font-size: .8rem; text-align: center; }
+
+/* leaderboard */
+table.lb { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 14px; overflow: hidden; }
+table.lb th { text-align: left; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; padding: 12px 10px; border-bottom: 1px solid #283057; }
+table.lb td { padding: 12px 10px; border-bottom: 1px solid #1d2444; font-size: .95rem; }
+table.lb tr.player { cursor: pointer; }
+table.lb tr.player:hover td { background: var(--panel2); }
+td.rank { font-family: 'JetBrains Mono', monospace; font-weight: 700; width: 52px; }
+tr.top1 td.rank { color: var(--accent); }
+tr.top2 td.rank { color: #cfd6f2; }
+tr.top3 td.rank { color: #d8975a; }
+td.total { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+td.pts { font-family: 'JetBrains Mono', monospace; color: var(--muted); }
+.champ-badge { background: var(--panel2); border-radius: 8px; padding: 3px 8px; font-size: .8rem; white-space: nowrap; }
+.champ-prob { color: var(--blue); font-family: 'JetBrains Mono', monospace; font-size: .72rem; margin-left: 5px; }
+tr.detail-row td { background: #10152a; padding: 14px; }
+.detail-grid { display: flex; gap: 26px; flex-wrap: wrap; font-size: .82rem; }
+.detail-grid h4 { margin: 0 0 6px; color: var(--accent); font-size: .78rem; text-transform: uppercase; letter-spacing: 1px; }
+.detail-grid td, .detail-grid th { padding: 2px 8px 2px 0; border: 0; }
+.hit { color: var(--green); } .miss { color: var(--muted); }
+
+/* race chart */
+.chartwrap { background: var(--panel); border-radius: 14px; padding: 16px; height: 520px; }
+
+/* brackets */
+.bracket-picker { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+.bracket-picker button { background: var(--panel); border: 1px solid #283057; color: var(--muted); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-family: inherit; font-size: .82rem; }
+.bracket-picker button.active { background: var(--blue); color: var(--bg); border-color: var(--blue); font-weight: 700; }
+.bracket { display: flex; gap: 14px; overflow-x: auto; padding: 10px 2px 18px; }
+.round { min-width: 170px; display: flex; flex-direction: column; justify-content: space-around; gap: 8px; }
+.round h3 { text-align: center; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 4px; }
+.bmatch { background: var(--panel); border: 1px solid #283057; border-radius: 10px; padding: 6px 8px; font-size: .8rem; }
+.bteam { display: flex; justify-content: space-between; padding: 2px 4px; border-radius: 6px; }
+.bteam .sc { font-family: 'JetBrains Mono', monospace; color: var(--muted); }
+.bteam.right { background: rgba(61,220,132,.14); } .bteam.right .nm { color: var(--green); }
+.bteam.wrong .nm { color: var(--red); text-decoration: line-through; opacity: .75; }
+.champ-line { text-align: center; margin-top: 10px; font-size: 1rem; }
+
+/* matches */
+.daygroup h2 { font-size: .95rem; color: var(--accent); border-bottom: 1px solid #283057; padding-bottom: 6px; margin: 26px 0 12px; }
+.mcard { background: var(--panel); border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
+.mhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.stagechip { background: var(--panel2); color: var(--blue); font-size: .68rem; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.mteams { font-weight: 700; font-size: 1.05rem; }
+.mscore { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+.mlive { color: var(--green); font-size: .72rem; font-weight: 700; animation: pulse 1.4s infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+.mmeta { color: var(--muted); font-size: .75rem; margin-left: auto; }
+.oddsbar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; margin: 10px 0 4px; }
+.oddsbar div { height: 100%; }
+.oddslabels { display: flex; justify-content: space-between; color: var(--muted); font-size: .7rem; font-family: 'JetBrains Mono', monospace; }
+.pickstable { width: 100%; margin-top: 10px; border-collapse: collapse; font-size: .8rem; }
+.pickstable td { padding: 3px 8px; border-bottom: 1px dashed #1d2444; }
+.pickstable td.p { font-family: 'JetBrains Mono', monospace; }
+.ptsbadge { font-family: 'JetBrains Mono', monospace; font-weight: 700; border-radius: 6px; padding: 1px 7px; font-size: .75rem; }
+.pts0 { color: var(--muted); }
+.ptsPlus { background: rgba(61,220,132,.15); color: var(--green); }
+.togglepicks { background: none; border: none; color: var(--blue); cursor: pointer; font-size: .75rem; font-family: inherit; padding: 4px 0; }
+@media (max-width: 640px) {
+  h1 { font-size: 1.7rem; }
+  table.lb td, table.lb th { padding: 8px 6px; font-size: .8rem; }
+}

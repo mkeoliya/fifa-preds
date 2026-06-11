@@ -1,0 +1,9 @@
+{
+  "_comment": "Manually maintained. Fill award winners (template spelling not required; names are compared loosely) once announced at tournament end.",
+  "awards": {
+    "golden_ball": null,
+    "golden_boot": null,
+    "golden_glove": null,
+    "young_player": null
+  }
+}

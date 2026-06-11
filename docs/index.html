@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chepta Cup — WC2026 Prediction Leaderboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🏆 Chepta Cup</h1>
+  <p class="sub">FIFA World Cup 2026 · prediction leaderboard</p>
+  <p class="updated" id="updated"></p>
+  <nav id="tabs">
+    <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+    <button class="tab" data-tab="race">Points Race</button>
+    <button class="tab" data-tab="brackets">Brackets</button>
+    <button class="tab" data-tab="matches">Matches</button>
+  </nav>
+</header>
+<main>
+  <section id="leaderboard" class="panel active"></section>
+  <section id="race" class="panel"><div class="chartwrap"><canvas id="raceChart"></canvas></div><p class="note">Cumulative match points over completed games (advancement bonuses &amp; awards not shown in the race line, but counted in totals).</p></section>
+  <section id="brackets" class="panel"></section>
+  <section id="matches" class="panel"></section>
+</main>
+<footer>Live scores via ESPN · market odds via Kalshi · refreshed every 20 min during the tournament</footer>
+<script src="app.js"></script>
+</body>
+</html>

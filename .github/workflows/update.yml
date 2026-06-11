@@ -1,0 +1,45 @@
+name: Update leaderboard
+
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-leaderboard
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stop after the tournament
+        run: |
+          if [ "$(date -u +%Y%m%d)" -gt 20260725 ]; then
+            echo "Tournament over; skipping." && echo "SKIP=1" >> "$GITHUB_ENV"
+          fi
+
+      - name: Fetch results + odds, rebuild leaderboard
+        if: env.SKIP != '1'
+        run: |
+          python3 pipeline/results.py
+          python3 pipeline/kalshi.py
+          python3 pipeline/scoring.py
+
+      - name: Commit updated data
+        if: env.SKIP != '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/results.json docs/data/
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "data: refresh results, odds, leaderboard"
+            git push
+          fi
