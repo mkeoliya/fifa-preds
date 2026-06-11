@@ -32,7 +32,7 @@ function winnerProb(team) {
 /* ---------- leaderboard ---------- */
 function renderLeaderboard() {
   const el = document.getElementById("leaderboard");
-  const rows = LB.players.map((p, i) => {
+  const rows = LB.players.map(p => {
     const wp = winnerProb(p.champion);
     return `
     <tr class="player top${p.rank}" data-name="${p.name}">
@@ -151,8 +151,6 @@ function drawBracket(name) {
     const cards = ms.map(m => bteamRows(m, actual[st])).join("");
     return `<div class="round"><h3>${STAGE_LABEL[st]}</h3>${cards}</div>`;
   }).join("");
-  const champRight = LB.matches.find(m => m.stage === "FINAL")?.completed
-    ? null : undefined; // champion correctness only known at the end
   const wp = winnerProb(pred.champion);
   document.getElementById("bracketview").innerHTML =
     `<div class="bracket">${cols}</div>
@@ -197,12 +195,15 @@ function renderMatches() {
       .sort((a, b) => a.date.localeCompare(b.date))
       .map(matchCard).join("");
     return `<div class="daygroup" id="day-${day}">
-      <h2>${dayLabel}${day === today ? " · TODAY" : ""}</h2>${cards}</div>`;
+      <h2>${dayLabel}${day === today ?
+        '<span class="todaytag"> · TODAY</span>' : ""}</h2>${cards}</div>`;
   }).join("");
   el.querySelectorAll(".togglepicks").forEach(btn =>
     btn.addEventListener("click", () => {
       const t = document.getElementById(btn.dataset.target);
-      t.style.display = t.style.display === "none" ? "" : "none";
+      const open = t.style.display === "none";
+      t.style.display = open ? "" : "none";
+      btn.textContent = open ? "Hide picks ▴" : "Show picks ▾";
     }));
   const anchor = document.getElementById(`day-${today}`);
   // jump to today when the tab is opened
@@ -234,29 +235,61 @@ function matchCard(m) {
       <span>draw ${(px * 100).toFixed(0)}%</span>
       <span>${t2} ${(p2 * 100).toFixed(0)}%</span></div>`;
   }
-  const picksRows = LB.players.map(p => {
+  const chips = LB.players.map(p => {
     const mid = `${m.stage}|${m.team1}|${m.team2}`;
     const det = p.per_match[mid];
-    let pickStr = "—", ptsHtml = "";
+    let scoreStr = "—", pensStr = "", pts = null, cls = "";
     if (det && det.pick) {
-      pickStr = `${det.pick[0] ?? "·"}–${det.pick[1] ?? "·"}` +
-        (det.pick_pens && det.pick_pens[0] != null
-          ? ` (${det.pick_pens[0]}–${det.pick_pens[1]}p)` : "");
-      ptsHtml = `<span class="ptsbadge ${det.points > 0 ? "ptsPlus" : "pts0"}">
-        ${det.points > 0 ? "+" + det.points : "0"}</span>`;
+      scoreStr = `${det.pick[0] ?? "·"}–${det.pick[1] ?? "·"}`;
+      if (det.pick_pens && det.pick_pens[0] != null)
+        pensStr = `${det.pick_pens[0]}–${det.pick_pens[1]} pens`;
+      pts = det.points;
+      cls = det.detail.includes("exact") ? "exact"
+        : det.detail.includes("result") ? "result" : "miss";
     } else if (m.team1 && m.team2) {
       const pick = (PICKS[p.name].matches || []).find(x => x.stage === m.stage &&
         ((x.team1 === m.team1 && x.team2 === m.team2) ||
          (x.team1 === m.team2 && x.team2 === m.team1)));
       if (pick) {
         const flip = pick.team1 !== m.team1;
-        const s1 = flip ? pick.score2 : pick.score1;
-        const s2 = flip ? pick.score1 : pick.score2;
-        pickStr = `${s1 ?? "·"}–${s2 ?? "·"}`;
+        scoreStr = `${(flip ? pick.score2 : pick.score1) ?? "·"}–${
+          (flip ? pick.score1 : pick.score2) ?? "·"}`;
+        if (pick.pen1 != null)
+          pensStr = `${flip ? pick.pen2 : pick.pen1}–${
+            flip ? pick.pen1 : pick.pen2} pens`;
       }
     }
-    return `<tr><td>${p.name}</td><td class="p">${pickStr}</td><td>${ptsHtml}</td></tr>`;
-  }).join("");
+    return { name: p.name, scoreStr, pensStr, pts, cls };
+  });
+
+  const isDone = m.state === "post";
+  let consensus = "";
+  if (isDone) {
+    chips.sort((a, b) => (b.pts ?? -1) - (a.pts ?? -1) ||
+      a.name.localeCompare(b.name));
+  } else {
+    // cluster identical scorelines, most popular first
+    const freq = {};
+    chips.forEach(c => freq[c.scoreStr] = (freq[c.scoreStr] || 0) + 1);
+    chips.sort((a, b) => freq[b.scoreStr] - freq[a.scoreStr] ||
+      a.scoreStr.localeCompare(b.scoreStr) || a.name.localeCompare(b.name));
+    const top = Object.entries(freq).filter(([s]) => s !== "—")
+      .sort((a, b) => b[1] - a[1])[0];
+    if (top && top[1] > 1)
+      consensus = `<p class="consensus">Crowd favourite: <b>${top[0]}</b>
+        (${top[1]} of ${chips.length} picks)</p>`;
+  }
+  const chipHtml = chips.map(c => `
+    <div class="pchip ${c.cls}">
+      ${c.pts != null && c.pts > 0 ? `<span class="pbadge">+${c.pts}</span>` : ""}
+      <div class="who">${c.name}</div>
+      <div class="pscore">${c.scoreStr}</div>
+      ${c.pensStr ? `<div class="ppens">${c.pensStr}</div>` : ""}
+    </div>`).join("");
+  const legend = isDone ? `<p class="legend">
+      <span class="sw" style="background:var(--mx)"></span>exact score
+      <span class="sw" style="background:var(--us)"></span>correct result
+      <span class="sw" style="background:#39406b"></span>miss</p>` : "";
   return `<div class="mcard">
     <div class="mhead">
       <span class="stagechip">${STAGE_LABEL[m.stage]}</span>
@@ -264,8 +297,9 @@ function matchCard(m) {
       <span class="mmeta">${m.venue ?? ""}</span>
     </div>
     ${odds}
-    <button class="togglepicks" data-target="${id}">show picks ▾</button>
-    <table class="pickstable" id="${id}" style="display:none">${picksRows}</table>
+    <button class="togglepicks" data-target="${id}">Show picks ▾</button>
+    <div id="${id}" style="display:none">${consensus}
+      <div class="pickgrid">${chipHtml}</div>${legend}</div>
   </div>`;
 }
 
