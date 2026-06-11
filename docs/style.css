@@ -38,8 +38,8 @@ body {
 
 /* ---------- header ---------- */
 header { text-align: center; padding: 34px 12px 0; }
-.trophy { height: 78px; display: inline-block;
-  filter: drop-shadow(0 8px 18px rgba(23, 43, 30, .22)); }
+.trophy { height: 54px; display: inline-block;
+  filter: saturate(.85) drop-shadow(0 4px 10px rgba(23, 43, 30, .18)); }
 h1 { margin: 6px 0 0; font-size: 2.1rem; font-weight: 800; letter-spacing: -.02em; }
 .sub { color: var(--muted); margin: 6px 0 0; font-size: .8rem;
   text-transform: uppercase; letter-spacing: .22em; font-weight: 600; }
