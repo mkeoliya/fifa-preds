@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-12T03:20:01Z",
+ "fetched_at": "2026-06-12T03:40:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -19,7 +19,7 @@
    "stage": "GROUP",
    "team1": "Rep. of Korea",
    "team2": "Czech Rep.",
-   "score1": 0,
+   "score1": 2,
    "score2": 1,
    "pen1": null,
    "pen2": null,
