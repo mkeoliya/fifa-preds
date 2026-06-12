@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-12T03:00:02Z",
+ "fetched_at": "2026-06-12T03:20:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -20,7 +20,7 @@
    "team1": "Rep. of Korea",
    "team2": "Czech Rep.",
    "score1": 0,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
