@@ -41,15 +41,18 @@ pipeline/
   scoring.py     picks + results -> docs/data/leaderboard.json + picks.json
   test_scoring.py  scoring sanity tests against simulated results
 docs/            static frontend served by GitHub Pages
-.github/workflows/update.yml  20-min refresh cron
+pipeline/update.sh  refresh + push script, run by local cron every 20 min
 ```
 
 ## Operating notes
 
 * **Award winners**: when announced after the final, fill `data/actuals.json`
   and the next cron run scores them (name matching is case/diacritic-loose).
-* **Manual refresh**: trigger the *Update leaderboard* workflow from the
-  Actions tab, or run the three pipeline scripts locally and push.
+* **Refresh**: a crontab entry on the host machine runs
+  `pipeline/update.sh` every 20 minutes (GitHub's scheduled Actions proved
+  too sporadic). It pulls, refreshes data, and pushes as mkeoliya via a
+  dedicated SSH key; log at `data/update.log`. For a manual refresh, run
+  the script directly. The script self-disables after 2026-07-25.
 * Two known blank picks (Shaun match 61, Vui match 54) score 0 for those
   matches. Missing award picks default to Kutu's per group decision
   (JJ, Mayukh); Majank, Vui, and Snacc have custom overrides supplied via
