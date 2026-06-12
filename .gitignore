@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 *.bak
 trionda.jpg
+data/update.log
+data/.update.lock
