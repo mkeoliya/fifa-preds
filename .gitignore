@@ -6,3 +6,4 @@ __pycache__/
 trionda.jpg
 data/update.log
 data/.update.lock
+data/.last_check

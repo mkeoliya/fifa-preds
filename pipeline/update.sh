@@ -7,8 +7,14 @@ REPO="/home/nvelingker/mkeoliya/fifa"
 LOG="$REPO/data/update.log"
 # push as mkeoliya via the dedicated SSH key (the `gitm` identity)
 export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -i /home/nvelingker/mkeoliya/.ssh/id_ed25519"
+
+# heartbeat (proves cron is alive even when we skip), then gate: only
+# refresh during match windows / live matches / the daily sync slot
+date -u +%Y-%m-%dT%H:%M:%SZ > "$REPO/data/.last_check"
+REASON=$(python3 "$REPO/pipeline/should_update.py") || exit 0
+
 exec >>"$LOG" 2>&1
-echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
+echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) ($REASON) ==="
 
 # stop after the tournament
 if [ "$(date -u +%Y%m%d)" -gt 20260725 ]; then
