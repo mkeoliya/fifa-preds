@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-11T23:56:28Z",
+ "fetched_at": "2026-06-12T02:27:53Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -19,11 +19,11 @@
    "stage": "GROUP",
    "team1": "Rep. of Korea",
    "team2": "Czech Rep.",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Estadio Akron"
   },
