@@ -49,10 +49,15 @@ pipeline/update.sh  refresh + push script, run by local cron every 20 min
 * **Award winners**: when announced after the final, fill `data/actuals.json`
   and the next cron run scores them (name matching is case/diacritic-loose).
 * **Refresh**: a crontab entry on the host machine runs
-  `pipeline/update.sh` every 20 minutes (GitHub's scheduled Actions proved
-  too sporadic). It pulls, refreshes data, and pushes as mkeoliya via a
-  dedicated SSH key; log at `data/update.log`. For a manual refresh, run
-  the script directly. The script self-disables after 2026-07-25.
+  `pipeline/update.sh` every 5 minutes (GitHub's scheduled Actions proved
+  too sporadic). `pipeline/should_update.py` gates it to actual match
+  windows (kickoff−5min → +2h45m group / +4h knockouts), any match still
+  live in the last snapshot, and a daily 12:00 UTC odds sync — so it's
+  5-minute updates during games and near-zero work otherwise. Pushes as
+  mkeoliya via a dedicated SSH key; log at `data/update.log`, heartbeat
+  at `data/.last_check`. For a manual refresh outside a match window,
+  run `FORCE=1 pipeline/update.sh`. The script self-disables after
+  2026-07-25.
 * Two known blank picks (Shaun match 61, Vui match 54) score 0 for those
   matches. Missing award picks default to Kutu's per group decision
   (JJ, Mayukh); Majank, Vui, and Snacc have custom overrides supplied via

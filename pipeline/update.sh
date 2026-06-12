@@ -11,7 +11,11 @@ export GIT_SSH_COMMAND="ssh -o IdentitiesOnly=yes -i /home/nvelingker/mkeoliya/.
 # heartbeat (proves cron is alive even when we skip), then gate: only
 # refresh during match windows / live matches / the daily sync slot
 date -u +%Y-%m-%dT%H:%M:%SZ > "$REPO/data/.last_check"
-REASON=$(python3 "$REPO/pipeline/should_update.py") || exit 0
+if [ "${FORCE:-0}" = "1" ]; then
+  REASON="forced"
+else
+  REASON=$(python3 "$REPO/pipeline/should_update.py") || exit 0
+fi
 
 exec >>"$LOG" 2>&1
 echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) ($REASON) ==="
