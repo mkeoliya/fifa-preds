@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-14T17:05:01Z",
+ "fetched_at": "2026-06-14T17:10:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -110,7 +110,7 @@
    "stage": "GROUP",
    "team1": "Germany",
    "team2": "Curaçao",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
