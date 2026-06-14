@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-14T00:10:01Z",
+ "fetched_at": "2026-06-14T00:15:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -75,8 +75,8 @@
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "MetLife Stadium"
   },
   {
