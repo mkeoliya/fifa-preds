@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-14T04:25:02Z",
+ "fetched_at": "2026-06-14T04:30:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -97,7 +97,7 @@
    "stage": "GROUP",
    "team1": "Australia",
    "team2": "Turkey",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
