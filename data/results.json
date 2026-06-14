@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-14T21:45:01Z",
+ "fetched_at": "2026-06-14T21:50:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -124,7 +124,7 @@
    "team1": "Netherlands",
    "team2": "Japan",
    "score1": 2,
-   "score2": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
    "state": "in",
