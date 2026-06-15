@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-15T02:40:02Z",
+ "fetched_at": "2026-06-15T02:45:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -150,7 +150,7 @@
    "team1": "Sweden",
    "team2": "Tunisia",
    "score1": 2,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
