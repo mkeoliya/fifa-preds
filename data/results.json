@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-15T23:45:02Z",
+ "fetched_at": "2026-06-15T23:50:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -189,7 +189,7 @@
    "team1": "Saudi Arabia",
    "team2": "Uruguay",
    "score1": 1,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
