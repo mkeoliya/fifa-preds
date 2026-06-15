@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-15T01:00:02Z",
+ "fetched_at": "2026-06-15T01:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -140,8 +140,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Lincoln Financial Field"
   },
   {
