@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-15T17:55:10Z",
+ "fetched_at": "2026-06-15T18:00:04Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -166,8 +166,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Mercedes-Benz Stadium"
   },
   {
