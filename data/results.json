@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-16T01:10:02Z",
+ "fetched_at": "2026-06-16T01:15:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -202,7 +202,7 @@
    "team1": "IR Iran",
    "team2": "New Zealand",
    "score1": 0,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
