@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-17T01:20:02Z",
+ "fetched_at": "2026-06-17T01:25:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -240,7 +240,7 @@
    "stage": "GROUP",
    "team1": "Argentina",
    "team2": "Algeria",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
