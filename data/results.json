@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-18T17:40:02Z",
+ "fetched_at": "2026-06-18T17:45:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -319,7 +319,7 @@
    "team1": "Czech Rep.",
    "team2": "South Africa",
    "score1": 1,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
