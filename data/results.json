@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-18T03:25:02Z",
+ "fetched_at": "2026-06-18T03:30:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -306,7 +306,7 @@
    "team1": "Uzbekistan",
    "team2": "Colombia",
    "score1": 1,
-   "score2": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
    "state": "in",
