@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-18T20:55:01Z",
+ "fetched_at": "2026-06-18T21:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -331,12 +331,12 @@
    "stage": "GROUP",
    "team1": "Switzerland",
    "team2": "Bosnia/Herzeg.",
-   "score1": 3,
+   "score1": 4,
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "SoFi Stadium"
   },
   {
