@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-18T22:30:01Z",
+ "fetched_at": "2026-06-18T22:35:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -344,7 +344,7 @@
    "stage": "GROUP",
    "team1": "Canada",
    "team2": "Qatar",
-   "score1": 1,
+   "score1": 2,
    "score2": 0,
    "pen1": null,
    "pen2": null,
