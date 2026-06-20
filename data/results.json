@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-20T20:30:02Z",
+ "fetched_at": "2026-06-20T20:35:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -436,7 +436,7 @@
    "team1": "Germany",
    "team2": "Ivory Coast",
    "score1": 0,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
