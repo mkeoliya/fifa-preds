@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-20T05:05:02Z",
+ "fetched_at": "2026-06-20T05:10:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -413,8 +413,8 @@
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Levi's Stadium"
   },
   {
@@ -1057,7 +1057,7 @@
   {
    "date": "2026-07-02T00:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "USA",
    "team2": null,
    "score1": null,
    "score2": null,
