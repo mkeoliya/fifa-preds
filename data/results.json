@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-20T01:20:02Z",
+ "fetched_at": "2026-06-20T01:25:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -396,7 +396,7 @@
    "stage": "GROUP",
    "team1": "Brazil",
    "team2": "Haiti",
-   "score1": 2,
+   "score1": 3,
    "score2": 0,
    "pen1": null,
    "pen2": null,
