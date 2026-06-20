@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-20T03:00:02Z",
+ "fetched_at": "2026-06-20T03:05:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -409,11 +409,11 @@
    "stage": "GROUP",
    "team1": "Turkey",
    "team2": "Paraguay",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Levi's Stadium"
   },
