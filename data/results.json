@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-20T17:00:02Z",
+ "fetched_at": "2026-06-20T17:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -422,11 +422,11 @@
    "stage": "GROUP",
    "team1": "Netherlands",
    "team2": "Sweden",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "NRG Stadium"
   },
