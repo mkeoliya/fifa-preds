@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-21T00:55:02Z",
+ "fetched_at": "2026-06-23T17:26:29Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -452,8 +452,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "GEHA Field at Arrowhead Stadium"
   },
   {
@@ -461,12 +461,12 @@
    "stage": "GROUP",
    "team1": "Tunisia",
    "team2": "Japan",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 4,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Estadio BBVA"
   },
   {
@@ -474,12 +474,12 @@
    "stage": "GROUP",
    "team1": "Spain",
    "team2": "Saudi Arabia",
-   "score1": null,
-   "score2": null,
+   "score1": 4,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Mercedes-Benz Stadium"
   },
   {
@@ -487,12 +487,12 @@
    "stage": "GROUP",
    "team1": "Belgium",
    "team2": "IR Iran",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "SoFi Stadium"
   },
   {
@@ -500,12 +500,12 @@
    "stage": "GROUP",
    "team1": "Uruguay",
    "team2": "Cape Verde",
-   "score1": null,
-   "score2": null,
+   "score1": 2,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Hard Rock Stadium"
   },
   {
@@ -513,12 +513,12 @@
    "stage": "GROUP",
    "team1": "New Zealand",
    "team2": "Egypt",
-   "score1": null,
-   "score2": null,
+   "score1": 1,
+   "score2": 3,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "BC Place"
   },
   {
@@ -526,12 +526,12 @@
    "stage": "GROUP",
    "team1": "Argentina",
    "team2": "Austria",
-   "score1": null,
-   "score2": null,
+   "score1": 2,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "AT&T Stadium"
   },
   {
@@ -539,12 +539,12 @@
    "stage": "GROUP",
    "team1": "France",
    "team2": "Iraq",
-   "score1": null,
-   "score2": null,
+   "score1": 3,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Lincoln Financial Field"
   },
   {
@@ -552,12 +552,12 @@
    "stage": "GROUP",
    "team1": "Norway",
    "team2": "Senegal",
-   "score1": null,
-   "score2": null,
+   "score1": 3,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "MetLife Stadium"
   },
   {
@@ -565,12 +565,12 @@
    "stage": "GROUP",
    "team1": "Jordan",
    "team2": "Algeria",
-   "score1": null,
-   "score2": null,
+   "score1": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Levi's Stadium"
   },
   {
@@ -578,11 +578,11 @@
    "stage": "GROUP",
    "team1": "Portugal",
    "team2": "Uzbekistan",
-   "score1": null,
-   "score2": null,
+   "score1": 2,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "NRG Stadium"
   },
@@ -966,7 +966,7 @@
   {
    "date": "2026-06-29T20:30Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "Germany",
    "team2": null,
    "score1": null,
    "score2": null,
@@ -1122,7 +1122,7 @@
   {
    "date": "2026-07-03T22:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "Argentina",
    "team2": null,
    "score1": null,
    "score2": null,
