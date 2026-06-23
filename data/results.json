@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-23T22:00:02Z",
+ "fetched_at": "2026-06-23T22:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -595,8 +595,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Gillette Stadium"
   },
   {
