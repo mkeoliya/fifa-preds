@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-24T22:20:01Z",
+ "fetched_at": "2026-06-24T22:25:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -670,7 +670,7 @@
    "team1": "Scotland",
    "team2": "Brazil",
    "score1": 0,
-   "score2": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
    "state": "in",
