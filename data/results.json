@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-24T23:40:01Z",
+ "fetched_at": "2026-06-24T23:45:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -656,7 +656,7 @@
    "stage": "GROUP",
    "team1": "Morocco",
    "team2": "Haiti",
-   "score1": 2,
+   "score1": 3,
    "score2": 2,
    "pen1": null,
    "pen2": null,
