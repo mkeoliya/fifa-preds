@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-24T20:55:02Z",
+ "fetched_at": "2026-06-24T21:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -634,8 +634,8 @@
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Lumen Field"
   },
   {
@@ -647,8 +647,8 @@
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "BC Place"
   },
   {
@@ -1096,7 +1096,7 @@
   {
    "date": "2026-07-03T03:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "Switzerland",
    "team2": null,
    "score1": null,
    "score2": null,
