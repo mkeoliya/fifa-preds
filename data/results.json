@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-25T23:00:03Z",
+ "fetched_at": "2026-06-25T23:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -734,11 +734,11 @@
    "stage": "GROUP",
    "team1": "Japan",
    "team2": "Sweden",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "AT&T Stadium"
   },
@@ -747,11 +747,11 @@
    "stage": "GROUP",
    "team1": "Tunisia",
    "team2": "Netherlands",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "GEHA Field at Arrowhead Stadium"
   },
