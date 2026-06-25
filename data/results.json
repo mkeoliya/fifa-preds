@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-25T02:55:02Z",
+ "fetched_at": "2026-06-25T03:00:03Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -686,8 +686,8 @@
    "score2": 3,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Estadio Banorte"
   },
   {
@@ -699,8 +699,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Estadio BBVA"
   },
   {
@@ -940,7 +940,7 @@
   {
    "date": "2026-06-28T19:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "South Africa",
    "team2": "Canada",
    "score1": null,
    "score2": null,
