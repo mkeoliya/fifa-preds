@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-25T20:00:02Z",
+ "fetched_at": "2026-06-25T20:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -708,11 +708,11 @@
    "stage": "GROUP",
    "team1": "Curaçao",
    "team2": "Ivory Coast",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Lincoln Financial Field"
   },
@@ -721,11 +721,11 @@
    "stage": "GROUP",
    "team1": "Ecuador",
    "team2": "Germany",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "MetLife Stadium"
   },
