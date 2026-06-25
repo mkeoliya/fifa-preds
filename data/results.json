@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-25T00:00:04Z",
+ "fetched_at": "2026-06-25T00:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -660,8 +660,8 @@
    "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Mercedes-Benz Stadium"
   },
   {
@@ -673,8 +673,8 @@
    "score2": 3,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Hard Rock Stadium"
   },
   {
@@ -953,7 +953,7 @@
   {
    "date": "2026-06-29T17:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "Brazil",
    "team2": null,
    "score1": null,
    "score2": null,
@@ -980,7 +980,7 @@
    "date": "2026-06-30T01:00Z",
    "stage": "R32",
    "team1": null,
-   "team2": null,
+   "team2": "Morocco",
    "score1": null,
    "score2": null,
    "pen1": null,
