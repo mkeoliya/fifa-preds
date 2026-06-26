@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-26T04:00:02Z",
+ "fetched_at": "2026-06-26T04:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -773,12 +773,12 @@
    "stage": "GROUP",
    "team1": "Turkey",
    "team2": "USA",
-   "score1": 2,
+   "score1": 3,
    "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "SoFi Stadium"
   },
   {
