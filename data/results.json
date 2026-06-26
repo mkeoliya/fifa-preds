@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-26T21:05:02Z",
+ "fetched_at": "2026-06-26T23:55:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -993,7 +993,7 @@
    "date": "2026-06-30T17:00Z",
    "stage": "R32",
    "team1": "Ivory Coast",
-   "team2": null,
+   "team2": "Norway",
    "score1": null,
    "score2": null,
    "pen1": null,
@@ -1005,7 +1005,7 @@
   {
    "date": "2026-06-30T21:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "France",
    "team2": null,
    "score1": null,
    "score2": null,
