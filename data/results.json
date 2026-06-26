@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-26T19:00:02Z",
+ "fetched_at": "2026-06-26T19:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -786,11 +786,11 @@
    "stage": "GROUP",
    "team1": "Norway",
    "team2": "France",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Gillette Stadium"
   },
@@ -799,11 +799,11 @@
    "stage": "GROUP",
    "team1": "Senegal",
    "team2": "Iraq",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "BMO Field"
   },
