@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-26T19:20:02Z",
+ "fetched_at": "2026-06-26T19:25:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -786,8 +786,8 @@
    "stage": "GROUP",
    "team1": "Norway",
    "team2": "France",
-   "score1": 0,
-   "score2": 1,
+   "score1": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
    "state": "in",
