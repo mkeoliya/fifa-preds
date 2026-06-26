@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-26T21:00:02Z",
+ "fetched_at": "2026-06-26T21:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -803,8 +803,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "BMO Field"
   },
   {
