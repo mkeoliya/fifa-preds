@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T04:25:02Z",
+ "fetched_at": "2026-06-27T04:30:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -852,7 +852,7 @@
    "team1": "New Zealand",
    "team2": "Belgium",
    "score1": 0,
-   "score2": 2,
+   "score2": 3,
    "pen1": null,
    "pen2": null,
    "state": "in",
