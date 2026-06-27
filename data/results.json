@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T05:00:02Z",
+ "fetched_at": "2026-06-27T05:05:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -839,11 +839,11 @@
    "team1": "Egypt",
    "team2": "IR Iran",
    "score1": 1,
-   "score2": 2,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Lumen Field"
   },
   {
