@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T04:55:02Z",
+ "fetched_at": "2026-06-27T05:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -839,7 +839,7 @@
    "team1": "Egypt",
    "team2": "IR Iran",
    "score1": 1,
-   "score2": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
    "state": "in",
@@ -852,11 +852,11 @@
    "team1": "New Zealand",
    "team2": "Belgium",
    "score1": 1,
-   "score2": 4,
+   "score2": 5,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "BC Place"
   },
   {
