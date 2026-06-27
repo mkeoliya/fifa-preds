@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T23:00:03Z",
+ "fetched_at": "2026-06-27T23:25:04Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1019,7 +1019,7 @@
    "date": "2026-07-01T01:00Z",
    "stage": "R32",
    "team1": "Mexico",
-   "team2": null,
+   "team2": "Ecuador",
    "score1": null,
    "score2": null,
    "pen1": null,
@@ -1031,7 +1031,7 @@
   {
    "date": "2026-07-01T16:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "England",
    "team2": null,
    "score1": null,
    "score2": null,
@@ -1084,7 +1084,7 @@
    "date": "2026-07-02T23:00Z",
    "stage": "R32",
    "team1": null,
-   "team2": null,
+   "team2": "Croatia",
    "score1": null,
    "score2": null,
    "pen1": null,
@@ -1136,7 +1136,7 @@
    "date": "2026-07-04T01:30Z",
    "stage": "R32",
    "team1": null,
-   "team2": null,
+   "team2": "Ghana",
    "score1": null,
    "score2": null,
    "pen1": null,
