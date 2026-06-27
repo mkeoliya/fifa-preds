@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T05:05:01Z",
+ "fetched_at": "2026-06-27T12:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1044,7 +1044,7 @@
   {
    "date": "2026-07-01T20:00Z",
    "stage": "R32",
-   "team1": null,
+   "team1": "Belgium",
    "team2": null,
    "score1": null,
    "score2": null,
@@ -1110,7 +1110,7 @@
    "date": "2026-07-03T18:00Z",
    "stage": "R32",
    "team1": "Australia",
-   "team2": null,
+   "team2": "Egypt",
    "score1": null,
    "score2": null,
    "pen1": null,
