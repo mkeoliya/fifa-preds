@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T03:00:02Z",
+ "fetched_at": "2026-06-27T03:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -838,11 +838,11 @@
    "stage": "GROUP",
    "team1": "Egypt",
    "team2": "IR Iran",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Lumen Field"
   },
@@ -851,11 +851,11 @@
    "stage": "GROUP",
    "team1": "New Zealand",
    "team2": "Belgium",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "BC Place"
   },
