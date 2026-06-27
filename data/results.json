@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T03:10:01Z",
+ "fetched_at": "2026-06-27T03:15:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -839,7 +839,7 @@
    "team1": "Egypt",
    "team2": "IR Iran",
    "score1": 1,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
