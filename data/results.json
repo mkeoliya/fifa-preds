@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-27T00:00:02Z",
+ "fetched_at": "2026-06-27T00:05:03Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -812,11 +812,11 @@
    "stage": "GROUP",
    "team1": "Cape Verde",
    "team2": "Saudi Arabia",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "NRG Stadium"
   },
@@ -825,11 +825,11 @@
    "stage": "GROUP",
    "team1": "Uruguay",
    "team2": "Spain",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Estadio Akron"
   },
