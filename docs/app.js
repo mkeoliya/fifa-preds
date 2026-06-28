@@ -23,13 +23,14 @@ const FLAGS = {
 };
 const flag = t => FLAGS[t] ?? "";
 
-let LB, PICKS, KALSHI;
+let LB, PICKS, PICKS_R32, KALSHI;
 
 async function load() {
   const bust = `?t=${Math.floor(Date.now() / 60000)}`;
-  [LB, PICKS, KALSHI] = await Promise.all([
+  [LB, PICKS, PICKS_R32, KALSHI] = await Promise.all([
     fetch(`data/leaderboard.json${bust}`).then(r => r.json()),
     fetch(`data/picks.json${bust}`).then(r => r.json()),
+    fetch(`data/picks_r32.json${bust}`).then(r => r.json()).catch(() => ({})),
     fetch(`data/kalshi.json${bust}`).then(r => r.json()).catch(() => null),
   ]);
   document.getElementById("updated").textContent =
@@ -87,6 +88,7 @@ function renderLeaderboard() {
       d < 0 ? `<span class="delta down">▼${-d}</span>` :
               `<span class="delta flat">—</span>`;
     const ptsCls = v => v > 0 ? "" : " zero";
+    const repredLabel = p.repred_fallback ? `<span class="fallback-tag" title="Using original bracket (no re-draft submitted)">OG</span>` : "";
     return `
     <tr class="player top${p.rank}" data-name="${p.name}">
       <td><span class="rankbadge">${p.rank}</span></td>
@@ -95,8 +97,9 @@ function renderLeaderboard() {
         p.live_points > 0 ?
         `<span class="ghost" title="provisional — if live matches ended now">+${p.live_points} live</span>` : ""}
         <div class="totalbar"><i style="width:${(p.total / maxTotal) * 100}%"></i></div></td>
-      <td class="pts match num${ptsCls(p.match_points)}">${p.match_points}</td>
-      <td class="pts num${ptsCls(p.bonus_points)}">${p.bonus_points}</td>
+      <td class="pts match num${ptsCls(p.og_group_points)}">${p.og_group_points}</td>
+      <td class="pts repred num${ptsCls(p.repred_points)}">${p.repred_points}${repredLabel}</td>
+      <td class="pts num${ptsCls(p.bonus_points + p.fixture_bonus)}">${p.bonus_points + p.fixture_bonus}</td>
       <td class="pts award num${ptsCls(p.award_points)}">${p.award_points}</td>
       <td>${sparkline(p.timeline)}</td>
       <td><div class="champchip">
@@ -106,17 +109,18 @@ function renderLeaderboard() {
         ${wp != null ? `<div class="cbar"><i style="width:${wp * 100}%"></i></div>` : ""}
       </div></td>
     </tr>
-    <tr class="detail-row" data-for="${p.name}" style="display:none"><td colspan="8">
+    <tr class="detail-row" data-for="${p.name}" style="display:none"><td colspan="9">
       ${detailHtml(p)}
     </td></tr>`;
   }).join("");
   el.innerHTML = `<div class="lbwrap"><table class="lb">
-    <thead><tr><th>Rank</th><th>Player</th><th>Total</th><th class="num">Match</th>
-    <th class="num">Bonus</th><th class="num">Awards</th><th>Form</th>
-    <th>Champion Pick</th></tr></thead>
+    <thead><tr><th>Rank</th><th>Player</th><th>Total</th><th class="num">Group</th>
+    <th class="num">Re-pred</th><th class="num">Bonus</th><th class="num">Awards</th>
+    <th>Form</th><th>Champion Pick</th></tr></thead>
     <tbody>${rows}</tbody></table></div>
-    <p class="note">Click a row for stage bonuses &amp; award picks.
-    Match pts: 5 result · +2 exact score · +3 exact pens.</p>`;
+    <p class="note">Click a row for stage bonuses, fixture bonuses &amp; award picks.
+    Group: 5 result · +2 exact &nbsp;|&nbsp; KO re-pred: 5 winner · +2 exact · +2 pens call · +5 exact+pens &nbsp;|&nbsp;
+    Bonus: team advancement + fixture match (+3 each).</p>`;
   el.querySelectorAll("tr.player").forEach(tr => tr.addEventListener("click", () => {
     const d = el.querySelector(`tr.detail-row[data-for="${tr.dataset.name}"]`);
     d.style.display = d.style.display === "none" ? "" : "none";
@@ -126,18 +130,38 @@ function renderLeaderboard() {
 function detailHtml(p) {
   const bonusRows = KO_ORDER.map(st => {
     const b = p.bonuses[st];
-    const status = b.complete ? `<b class="hit">+${b.points}</b>`
+    const size = ROUND_SIZE[st];
+    const isPerTeam = st === "SF" || st === "FINAL";
+    const maxPts = isPerTeam ? size * 3 : null;
+    const status = b.complete
+      ? `<b class="hit">+${b.points}${maxPts != null ? `/${maxPts}` : ""}</b>`
       : `<span class="pend">pending</span>`;
     return `<tr><td>${STAGE_LABEL[st]}</td>
-      <td>${b.correct_so_far}/${ROUND_SIZE[st]} teams</td><td>${status}</td></tr>`;
+      <td>${b.correct_so_far}/${size} teams</td><td>${status}</td></tr>`;
   }).join("");
+
+  const fixtureBonusTotal = p.fixture_bonus ?? 0;
+  const fixtureRows = Object.values(p.fixture_bonuses ?? {})
+    .sort((a, b) => KO_ORDER.indexOf(a.stage) - KO_ORDER.indexOf(b.stage))
+    .map(f => `<tr><td>${STAGE_LABEL[f.stage]}</td>
+      <td>${flag(f.team1)} ${f.team1} vs ${f.team2} ${flag(f.team2)}</td>
+      <td class="${f.hit ? "hit" : "miss"}">${f.hit ? "+3 ✓" : "miss"}</td></tr>`).join("");
+
   const awardRows = Object.entries(p.awards).map(([cat, a]) => {
     const label = cat.replace("_", " ").replace(/\b\w/g, c => c.toUpperCase());
     return `<tr><td>${label}</td><td class="${a.hit ? "hit" : "miss"}">
       ${a.pick ?? "—"}${a.hit ? " ✓" : ""}</td></tr>`;
   }).join("");
+
+  const repredNote = p.repred_fallback
+    ? `<p class="note" style="margin-top:4px">⚠ No re-draft submitted — using original bracket for KO scoring.</p>` : "";
+
   return `<div class="detail-grid">
     <div><h4>Advancement bonuses</h4><table>${bonusRows}</table></div>
+    <div><h4>Fixture bonuses <span class="pts-sub">(+${fixtureBonusTotal} pts)</span></h4>
+      <table>${fixtureRows || "<tr><td colspan='3'>No knockout matches yet</td></tr>"}</table>
+      ${repredNote}
+    </div>
     <div><h4>Award picks</h4><table>${awardRows}</table></div>
   </div>`;
 }
@@ -312,7 +336,8 @@ function matchCard(m) {
       cls = det.detail.includes("exact") ? "exact"
         : det.detail.includes("result") ? "result" : "miss";
     } else if (m.team1 && m.team2) {
-      const pick = (PICKS[p.name].matches || []).find(x => x.stage === m.stage &&
+      const src = m.stage === "GROUP" ? PICKS : (PICKS_R32 ?? PICKS);
+      const pick = ((src[p.name] || PICKS[p.name])?.matches || []).find(x => x.stage === m.stage &&
         ((x.team1 === m.team1 && x.team2 === m.team2) ||
          (x.team1 === m.team2 && x.team2 === m.team1)));
       if (pick) {
@@ -351,11 +376,13 @@ function matchCard(m) {
       <div class="pscore">${c.scoreStr}</div>
       ${c.pensStr ? `<div class="ppens">${c.pensStr}</div>` : ""}
     </div>`).join("");
+  const isKO = m.stage !== "GROUP";
   const legend = isDone ? `<p class="legend">${isLive ?
       "provisional — points settle at full time · " : ""}
       <span class="sw" style="background:var(--green)"></span>exact score
-      <span class="sw" style="background:var(--blue)"></span>correct result
-      <span class="sw" style="background:#c4cab9"></span>miss</p>` : "";
+      <span class="sw" style="background:var(--blue)"></span>correct ${isKO ? "winner" : "result"}
+      <span class="sw" style="background:#c4cab9"></span>miss${isKO ?
+      " &nbsp;·&nbsp; KO re-pred: 5 winner · +2 exact · +2 pens call · +5 exact+pens" : ""}</p>` : "";
   return `<div class="mcard">
     <div class="mhead">
       <span class="stagechip">${STAGE_LABEL[m.stage]}</span>

@@ -132,8 +132,12 @@ td.total { white-space: nowrap; }
 .totalbar i { display: block; height: 100%; background: var(--green); border-radius: 2px; }
 td.pts { font-family: var(--mono); color: var(--muted); font-size: .9rem; }
 td.pts.match { color: var(--blue); }
+td.pts.repred { color: var(--green); }
 td.pts.award { color: var(--red); }
 td.pts.zero { color: var(--faint); }
+.fallback-tag { font-size: .65rem; background: var(--faint); color: var(--muted);
+  border-radius: 3px; padding: 1px 4px; margin-left: 4px; vertical-align: middle; }
+.pts-sub { font-size: .75rem; font-weight: normal; color: var(--muted); }
 
 .spark { display: block; }
 .spark polyline { fill: none; stroke: var(--blue); stroke-width: 1.5; }
