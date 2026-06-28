@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-28T03:55:02Z",
+ "fetched_at": "2026-06-28T04:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -916,12 +916,12 @@
    "stage": "GROUP",
    "team1": "Algeria",
    "team2": "Austria",
-   "score1": 2,
-   "score2": 2,
+   "score1": 3,
+   "score2": 3,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "GEHA Field at Arrowhead Stadium"
   },
   {
@@ -933,8 +933,8 @@
    "score2": 3,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "AT&T Stadium"
   },
   {
