@@ -55,6 +55,16 @@ REPRED_PTS_PENS_CALL = 2
 REPRED_PTS_PENS_EXACT = 5
 
 
+def norm_team(name):
+    """Fix double-encoded UTF-8 team names (e.g. ESPN returns Curaçao as \\xc3\\xa7)."""
+    if not name:
+        return name
+    try:
+        return name.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return name
+
+
 def result_of(s1, s2):
     if s1 is None or s2 is None:
         return None
@@ -95,7 +105,7 @@ def score_og_match(pick, actual):
     """Score an OG pick against a completed group-stage match."""
     pts = 0
     detail = []
-    if pick.team1 == actual["team1"]:
+    if norm_team(pick.team1) == norm_team(actual["team1"]):
         ps1, ps2, pp1, pp2 = pick.score1, pick.score2, pick.pen1, pick.pen2
     else:
         ps1, ps2, pp1, pp2 = pick.score2, pick.score1, pick.pen2, pick.pen1
@@ -122,8 +132,8 @@ def score_repred_match(pick, actual):
     pts = 0
     detail = []
 
-    teams_match = (frozenset((pick.team1, pick.team2)) ==
-                   frozenset((actual["team1"], actual["team2"])))
+    teams_match = (frozenset((norm_team(pick.team1), norm_team(pick.team2))) ==
+                   frozenset((norm_team(actual["team1"]), norm_team(actual["team2"]))))
     a_winner = actual_winner_team(actual)
     p_winner = predicted_winner_team(pick)
 
@@ -133,7 +143,7 @@ def score_repred_match(pick, actual):
 
     if teams_match:
         # Orient pick scores to actual team order
-        if pick.team1 == actual["team1"]:
+        if norm_team(pick.team1) == norm_team(actual["team1"]):
             ps1, ps2, pp1, pp2 = pick.score1, pick.score2, pick.pen1, pick.pen2
         else:
             ps1, ps2, pp1, pp2 = pick.score2, pick.score1, pick.pen2, pick.pen1
@@ -200,7 +210,7 @@ def main() -> int:
     live = []
     for m in results["matches"]:
         if m["team1"] and m["team2"]:
-            actual_by_key[(m["stage"], frozenset((m["team1"], m["team2"])))] = m
+            actual_by_key[(m["stage"], frozenset((norm_team(m["team1"]), norm_team(m["team2"]))))] = m
         if m["completed"]:
             if m["stage"] == "GROUP":
                 completed_group.append(m)
@@ -227,14 +237,14 @@ def main() -> int:
         using_og_fallback = repred is og_pred
 
         # --- group stage scoring (OG picks) ---
-        og_pick_by_key = {(p.stage, frozenset((p.team1, p.team2))): p
+        og_pick_by_key = {(p.stage, frozenset((norm_team(p.team1), norm_team(p.team2)))): p
                           for p in og_pred.matches}
         group_pts = 0
         per_match: dict = {}
         timeline = []
         cum = 0
         for m in completed_group:
-            key = ("GROUP", frozenset((m["team1"], m["team2"])))
+            key = ("GROUP", frozenset((norm_team(m["team1"]), norm_team(m["team2"]))))
             pick = og_pick_by_key.get(key)
             pts, detail = score_og_match(pick, m) if pick else (0, [])
             group_pts += pts
@@ -243,24 +253,24 @@ def main() -> int:
             per_match[mid] = {
                 "points": pts, "detail": detail,
                 "pick": [pick.score1, pick.score2] if pick and
-                        pick.team1 == m["team1"] else
+                        norm_team(pick.team1) == norm_team(m["team1"]) else
                         [pick.score2, pick.score1] if pick else None,
                 "pick_pens": [pick.pen1, pick.pen2] if pick and
-                              pick.team1 == m["team1"] else
+                              norm_team(pick.team1) == norm_team(m["team1"]) else
                               [pick.pen2, pick.pen1] if pick else None,
             }
             timeline.append({"date": m["date"], "cum": cum})
 
         # --- knockout scoring (re-draft picks) ---
         repred_ko_picks = [p for p in repred.matches if p.stage != "GROUP"]
-        repred_by_key = {(p.stage, frozenset((p.team1, p.team2))): p
+        repred_by_key = {(p.stage, frozenset((norm_team(p.team1), norm_team(p.team2)))): p
                          for p in repred_ko_picks}
 
         ko_pts = 0
         used_repred_picks: set = set()  # ids of picks consumed by exact-fixture match
 
         for m in completed_ko:
-            key = (m["stage"], frozenset((m["team1"], m["team2"])))
+            key = (m["stage"], frozenset((norm_team(m["team1"]), norm_team(m["team2"]))))
             pick = repred_by_key.get(key)
             if pick is not None:
                 pts, detail = score_repred_match(pick, m)
@@ -291,11 +301,11 @@ def main() -> int:
             }
             if pick is not None:
                 per_match[mid]["pick"] = (
-                    [pick.score1, pick.score2] if pick.team1 == m["team1"]
+                    [pick.score1, pick.score2] if norm_team(pick.team1) == norm_team(m["team1"])
                     else [pick.score2, pick.score1]
                 )
                 per_match[mid]["pick_pens"] = (
-                    [pick.pen1, pick.pen2] if pick.team1 == m["team1"]
+                    [pick.pen1, pick.pen2] if norm_team(pick.team1) == norm_team(m["team1"])
                     else [pick.pen2, pick.pen1]
                 )
             timeline.append({"date": m["date"], "cum": cum})
@@ -305,7 +315,7 @@ def main() -> int:
         per_match_live: dict = {}
         used_live: set = set()
         for m in live:
-            key = (m["stage"], frozenset((m["team1"], m["team2"])))
+            key = (m["stage"], frozenset((norm_team(m["team1"]), norm_team(m["team2"]))))
             pick = repred_by_key.get(key) if m["stage"] != "GROUP" else og_pick_by_key.get(key)
             if pick is not None and m["stage"] == "GROUP":
                 pts, detail = score_og_match(pick, m)
@@ -319,11 +329,11 @@ def main() -> int:
             per_match_live[mid] = {
                 "points": pts, "detail": detail,
                 "pick": (
-                    [pick.score1, pick.score2] if pick and pick.team1 == m["team1"]
+                    [pick.score1, pick.score2] if pick and norm_team(pick.team1) == norm_team(m["team1"])
                     else [pick.score2, pick.score1] if pick else None
                 ),
                 "pick_pens": (
-                    [pick.pen1, pick.pen2] if pick and pick.team1 == m["team1"]
+                    [pick.pen1, pick.pen2] if pick and norm_team(pick.team1) == norm_team(m["team1"])
                     else [pick.pen2, pick.pen1] if pick else None
                 ),
             }
@@ -334,7 +344,7 @@ def main() -> int:
         for pick in og_pred.matches:
             if pick.stage == "GROUP":
                 continue
-            key = (pick.stage, frozenset((pick.team1, pick.team2)))
+            key = (pick.stage, frozenset((norm_team(pick.team1), norm_team(pick.team2))))
             hit = key in actual_by_key
             bonus = 3 if hit else 0
             fixture_bonus += bonus
