@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-29T18:15:02Z",
+ "fetched_at": "2026-06-29T18:20:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -955,7 +955,7 @@
    "stage": "R32",
    "team1": "Brazil",
    "team2": "Japan",
-   "score1": 0,
+   "score1": 1,
    "score2": 1,
    "pen1": null,
    "pen2": null,
