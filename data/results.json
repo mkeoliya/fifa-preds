@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-29T23:25:02Z",
+ "fetched_at": "2026-06-29T23:30:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -970,10 +970,10 @@
    "team2": "Paraguay",
    "score1": 1,
    "score2": 1,
-   "pen1": 2,
-   "pen2": 3,
-   "state": "in",
-   "completed": false,
+   "pen1": 3,
+   "pen2": 4,
+   "state": "post",
+   "completed": true,
    "venue": "Gillette Stadium"
   },
   {
