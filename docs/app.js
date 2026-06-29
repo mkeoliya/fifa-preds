@@ -170,36 +170,63 @@ function detailHtml(p) {
 function renderRace() {
   const done = LB.matches.filter(m => m.completed)
     .sort((a, b) => a.date.localeCompare(b.date));
-  const labels = done.map(m => `${m.team1} v ${m.team2}`);
+
+  if (!done.length) {
+    document.querySelector("#race .chartwrap").insertAdjacentHTML("beforebegin",
+      `<p class="note">No completed matches yet — the race starts with the opening game!</p>`);
+    return;
+  }
+
+  // X labels: unique dates (one label per calendar day, shown at first match of that day)
+  const labels = done.map(m =>
+    new Date(m.date).toLocaleDateString([], { month: "short", day: "numeric" }));
+
+  // Compute rank after every completed match
+  // total at time t = cum_t + static bonuses (fixture + advancement + awards)
+  const n = LB.players[0]?.timeline.length ?? 0;
+  const ranksByPlayer = LB.players.map(() => []);
+  for (let t = 0; t < n; t++) {
+    const totals = LB.players.map(p =>
+      (p.timeline[t]?.cum ?? 0) + p.bonus_points + p.fixture_bonus + p.award_points);
+    // rank = number of players with strictly higher total + 1 (ties share the better rank)
+    LB.players.forEach((_, pi) => {
+      const rank = totals.filter(v => v > totals[pi]).length + 1;
+      ranksByPlayer[pi].push(rank);
+    });
+  }
+
   const datasets = LB.players.map((p, i) => ({
     label: p.name,
-    data: p.timeline.map(t => t.cum),
+    data: ranksByPlayer[i],
     borderColor: COLORS[i % COLORS.length],
     backgroundColor: COLORS[i % COLORS.length],
-    tension: 0.25, borderWidth: 2.2,
-    pointRadius: 4, pointHoverRadius: 7, pointBorderColor: "#ffffff",
-    pointBorderWidth: 1.5,
+    tension: 0.3, borderWidth: 2.2,
+    pointRadius: 2, pointHoverRadius: 6,
+    pointBorderColor: "#ffffff", pointBorderWidth: 1.5,
   }));
+
   new Chart(document.getElementById("raceChart"), {
     type: "line",
     data: { labels, datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
-      interaction: { mode: "nearest", intersect: false },
+      interaction: { mode: "index", intersect: false },
       scales: {
-        x: { ticks: { color: "#5d6a62", maxTicksLimit: 14, maxRotation: 60 },
+        x: { ticks: { color: "#5d6a62", maxTicksLimit: 18, maxRotation: 45 },
              grid: { color: "#e7eadd" } },
-        y: { ticks: { color: "#5d6a62" }, grid: { color: "#e7eadd" },
-             title: { display: true, text: "match points", color: "#5d6a62" } },
+        y: {
+          reverse: true,
+          min: 1, max: LB.players.length,
+          ticks: { color: "#5d6a62", stepSize: 1,
+            callback: v => Number.isInteger(v) ? `#${v}` : "" },
+          grid: { color: "#e7eadd" },
+          title: { display: true, text: "rank", color: "#5d6a62" },
+        },
       },
       plugins: { legend: { labels: { color: "#17211a", usePointStyle: true,
         pointStyle: "circle", boxWidth: 8 } } },
     },
   });
-  if (!done.length) {
-    document.querySelector("#race .chartwrap").insertAdjacentHTML("beforebegin",
-      `<p class="note">No completed matches yet — the race starts with the opening game!</p>`);
-  }
 }
 
 /* ---------- brackets ---------- */
@@ -212,12 +239,30 @@ function actualRoundTeams(stage) {
   return { teams, complete: teams.size === ROUND_SIZE[stage] };
 }
 
+let bracketMode = "og"; // "og" or "repred"
+
 function renderBrackets() {
   const el = document.getElementById("brackets");
   const names = LB.players.map(p => p.name);
-  el.innerHTML = `<div class="bracket-picker">${names.map((n, i) =>
-    `<button data-name="${n}" class="${i === 0 ? "active" : ""}">${n}</button>`
-  ).join("")}</div><div id="bracketview"></div>`;
+  el.innerHTML = `
+    <div class="bracket-mode-toggle">
+      <button class="bmode active" data-mode="og">OG picks</button>
+      <button class="bmode" data-mode="repred">Re-draft picks</button>
+    </div>
+    <div class="bracket-picker">${names.map((n, i) =>
+      `<button data-name="${n}" class="${i === 0 ? "active" : ""}">${n}</button>`
+    ).join("")}</div>
+    <div id="bracketview"></div>`;
+
+  el.querySelectorAll(".bmode").forEach(b =>
+    b.addEventListener("click", () => {
+      el.querySelectorAll(".bmode").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      bracketMode = b.dataset.mode;
+      const active = el.querySelector(".bracket-picker button.active");
+      drawBracket(active?.dataset.name ?? names[0]);
+    }));
+
   el.querySelectorAll(".bracket-picker button").forEach(b =>
     b.addEventListener("click", () => {
       el.querySelectorAll(".bracket-picker button").forEach(x =>
@@ -229,21 +274,33 @@ function renderBrackets() {
 }
 
 function drawBracket(name) {
-  const pred = PICKS[name];
+  const isRepred = bracketMode === "repred";
+  const r32pred = PICKS_R32?.[name];
+  const isFallback = isRepred && !r32pred;
+  const pred = isRepred ? (r32pred || PICKS[name]) : PICKS[name];
+
   const actual = {};
   KO_ORDER.forEach(st => actual[st] = actualRoundTeams(st));
+
   const cols = KO_ORDER.map(st => {
     const ms = pred.matches.filter(m => m.stage === st)
-      .sort((a, b) => a.match_no - b.match_no);
+      .sort((a, b) => (a.match_no ?? 0) - (b.match_no ?? 0));
+    if (!ms.length) return "";
     const cards = ms.map(m => bteamRows(m, actual[st])).join("");
     return `<div class="round"><h3>${STAGE_LABEL[st]}</h3>${cards}</div>`;
   }).join("");
-  const wp = winnerProb(pred.champion);
+
+  const wp = !isRepred ? winnerProb(pred.champion) : null;
+  const champLine = !isRepred
+    ? `<p class="champ-line">Predicted champion:
+        <b>${flag(pred.champion)} ${pred.champion}</b>${wp != null ?
+        ` <span class="champ-prob">Kalshi ${(wp * 100).toFixed(0)}%</span>` : ""}</p>`
+    : "";
+  const fallbackNote = isFallback
+    ? `<p class="note" style="color:var(--muted)">No re-draft submitted — showing original bracket as fallback.</p>` : "";
+
   document.getElementById("bracketview").innerHTML =
-    `<div class="bracket">${cols}</div>
-     <p class="champ-line">Predicted champion:
-       <b>${flag(pred.champion)} ${pred.champion}</b>${wp != null ?
-       ` <span class="champ-prob">Kalshi ${(wp * 100).toFixed(0)}%</span>` : ""}</p>
+    `${fallbackNote}<div class="bracket">${cols}</div>${champLine}
      <p class="note"><span class="hit">green</span> = team really made this round ·
      <span style="color:var(--red)">red</span> = field set, team missed it</p>`;
 }

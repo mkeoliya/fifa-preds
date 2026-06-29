@@ -169,6 +169,18 @@ tr.detail-row td { background: var(--s2); padding: 16px 18px; }
 }
 
 /* ---------- brackets ---------- */
+.bracket-mode-toggle { display: flex; justify-content: center; gap: 0; margin-bottom: 14px; }
+.bracket-mode-toggle .bmode {
+  background: var(--card); border: 1px solid var(--line); color: var(--muted);
+  padding: 7px 20px; cursor: pointer; font-family: inherit; font-size: .82rem;
+  font-weight: 700; transition: all .15s;
+}
+.bracket-mode-toggle .bmode:first-child { border-radius: 8px 0 0 8px; border-right: none; }
+.bracket-mode-toggle .bmode:last-child  { border-radius: 0 8px 8px 0; }
+.bracket-mode-toggle .bmode.active {
+  background: var(--accent-dim, var(--red-dim));
+  color: var(--accent, var(--red)); border-color: var(--accent, var(--red));
+}
 .bracket-picker { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 18px; }
 .bracket-picker button {
   background: var(--card); border: 1px solid var(--line); color: var(--muted);
