@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-06-30T21:45:02Z",
+ "fetched_at": "2026-06-30T21:50:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1007,7 +1007,7 @@
    "stage": "R32",
    "team1": "France",
    "team2": "Sweden",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
