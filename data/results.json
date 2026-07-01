@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-01T18:00:02Z",
+ "fetched_at": "2026-07-01T18:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1037,8 +1037,8 @@
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Mercedes-Benz Stadium"
   },
   {
@@ -1188,7 +1188,7 @@
    "date": "2026-07-06T00:00Z",
    "stage": "R16",
    "team1": "Mexico",
-   "team2": null,
+   "team2": "England",
    "score1": null,
    "score2": null,
    "pen1": null,
