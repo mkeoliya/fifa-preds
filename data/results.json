@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-02T00:00:02Z",
+ "fetched_at": "2026-07-02T00:05:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1059,11 +1059,11 @@
    "stage": "R32",
    "team1": "USA",
    "team2": "Bosnia/Herzeg.",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Levi's Stadium"
   },
