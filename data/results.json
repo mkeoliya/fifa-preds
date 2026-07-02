@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-02T20:55:02Z",
+ "fetched_at": "2026-07-02T21:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1076,8 +1076,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "SoFi Stadium"
   },
   {
@@ -1201,7 +1201,7 @@
    "date": "2026-07-06T19:00Z",
    "stage": "R16",
    "team1": null,
-   "team2": null,
+   "team2": "Spain",
    "score1": null,
    "score2": null,
    "pen1": null,
