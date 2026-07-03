@@ -380,19 +380,61 @@ function matchCard(m) {
       <span>${t2} ${(p2 * 100).toFixed(0)}%</span></div>`;
   }
   const isLive = m.state === "in";
+  const isKO = m.stage !== "GROUP";
+
+  function koClass(pts) {
+    if (pts >= 14) return "ko14";
+    if (pts >= 9)  return "ko9";
+    if (pts >= 7)  return "ko7";
+    if (pts >= 5)  return "ko5";
+    if (pts >= 2)  return "ko2";
+    return "miss";
+  }
+
+  // For a KO wrong-fixture chip: find which pick shares a team with the actual match
+  // and show that team + whether the player picked them to advance
+  function partialKODisplay(playerName) {
+    const src = PICKS_R32?.[playerName] || PICKS[playerName];
+    const stagePicks = (src?.matches || []).filter(x => x.stage === m.stage);
+    for (const pick of stagePicks) {
+      const shared = [pick.team1, pick.team2].find(t => t === m.team1 || t === m.team2);
+      if (!shared) continue;
+      // Determine if the player picked the shared team to win
+      const sharedIsTeam1 = pick.team1 === shared;
+      const s1 = sharedIsTeam1 ? pick.score1 : pick.score2;
+      const s2 = sharedIsTeam1 ? pick.score2 : pick.score1;
+      const p1 = sharedIsTeam1 ? pick.pen1 : pick.pen2;
+      const p2 = sharedIsTeam1 ? pick.pen2 : pick.pen1;
+      const pickedToWin = s1 > s2 || (s1 === s2 && p1 != null && p1 > p2);
+      return { team: shared, pickedToWin };
+    }
+    return null;
+  }
+
   const chips = LB.players.map(p => {
     const mid = `${m.stage}|${m.team1}|${m.team2}`;
     const det = p.per_match[mid] ??
       (isLive ? (p.per_match_live ?? {})[mid] : undefined);
     let scoreStr = "—", pensStr = "", pts = null, cls = "";
     if (det && det.pick) {
+      // Exact fixture match — show score normally
       scoreStr = `${det.pick[0] ?? "·"}–${det.pick[1] ?? "·"}`;
       if (det.pick_pens && det.pick_pens[0] != null)
         pensStr = `${det.pick_pens[0]}–${det.pick_pens[1]} pens`;
       pts = det.points;
-      cls = det.detail.includes("exact") ? "exact"
+      cls = isKO ? koClass(pts)
+        : det.detail.includes("exact") ? "exact"
         : det.detail.includes("result") ? "result" : "miss";
+    } else if (isKO && det) {
+      // KO wrong-fixture: det exists (zeroed or winner-only) — show partial team info
+      pts = det.points;
+      const partial = partialKODisplay(p.name);
+      if (partial) {
+        scoreStr = `${flag(partial.team)} ${partial.pickedToWin ? "to win" : "out"}`;
+      }
+      cls = koClass(pts);
     } else if (m.team1 && m.team2) {
+      // Pre-match or group stage fallback: look up pick directly
       const src = m.stage === "GROUP" ? PICKS : (PICKS_R32 ?? PICKS);
       const pick = ((src[p.name] || PICKS[p.name])?.matches || []).find(x => x.stage === m.stage &&
         ((x.team1 === m.team1 && x.team2 === m.team2) ||
@@ -402,8 +444,11 @@ function matchCard(m) {
         scoreStr = `${(flip ? pick.score2 : pick.score1) ?? "·"}–${
           (flip ? pick.score1 : pick.score2) ?? "·"}`;
         if (pick.pen1 != null)
-          pensStr = `${flip ? pick.pen2 : pick.pen1}–${
-            flip ? pick.pen1 : pick.pen2} pens`;
+          pensStr = `${flip ? pick.pen2 : pick.pen1}–${flip ? pick.pen1 : pick.pen2} pens`;
+      } else if (isKO) {
+        // Pre-match KO: find partial team match to show expected winner
+        const partial = partialKODisplay(p.name);
+        if (partial) scoreStr = `${flag(partial.team)} ${partial.pickedToWin ? "to win" : "out"}`;
       }
     }
     return { name: p.name, scoreStr, pensStr, pts, cls };
@@ -433,13 +478,16 @@ function matchCard(m) {
       <div class="pscore">${c.scoreStr}</div>
       ${c.pensStr ? `<div class="ppens">${c.pensStr}</div>` : ""}
     </div>`).join("");
-  const isKO = m.stage !== "GROUP";
   const legend = isDone ? `<p class="legend">${isLive ?
-      "provisional — points settle at full time · " : ""}
-      <span class="sw" style="background:var(--green)"></span>exact score
-      <span class="sw" style="background:var(--blue)"></span>correct ${isKO ? "winner" : "result"}
-      <span class="sw" style="background:#c4cab9"></span>miss${isKO ?
-      " &nbsp;·&nbsp; KO re-pred: 5 winner · +2 exact · +2 pens call · +5 exact+pens" : ""}</p>` : "";
+      "provisional — points settle at full time · " : ""}${isKO
+      ? `<span class="sw" style="background:var(--blue)"></span>+5 winner
+         <span class="sw" style="background:var(--green)"></span>+7 winner+exact
+         <span class="sw" style="background:var(--orange)"></span>+9
+         <span class="sw" style="background:var(--red)"></span>+14 full combo
+         <span class="sw" style="background:var(--yellow)"></span>+2 partial`
+      : `<span class="sw" style="background:var(--green)"></span>exact score
+         <span class="sw" style="background:var(--blue)"></span>correct result
+         <span class="sw" style="background:#c4cab9"></span>miss`}</p>` : "";
   return `<div class="mcard">
     <div class="mhead">
       <span class="stagechip">${STAGE_LABEL[m.stage]}</span>

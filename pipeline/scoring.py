@@ -54,6 +54,11 @@ REPRED_PTS_EXACT = 2
 REPRED_PTS_PENS_CALL = 2
 REPRED_PTS_PENS_EXACT = 5
 
+# Player-specific zero overrides: these (stage, frozenset_of_teams) score 0 regardless
+ZERO_OVERRIDES: dict[str, set] = {
+    "Majank": {("R32", frozenset({"Canada", "South Africa"}))},
+}
+
 
 def norm_team(name):
     """Fix double-encoded UTF-8 team names (e.g. ESPN returns Curaçao as \\xc3\\xa7)."""
@@ -290,6 +295,11 @@ def main() -> int:
                         detail = ["winner"]
                         used_repred_picks.add(id(rp))
                         break
+
+            # Apply player-specific zero overrides
+            zero_key = (m["stage"], frozenset({norm_team(m["team1"]), norm_team(m["team2"])}))
+            if zero_key in ZERO_OVERRIDES.get(name, set()):
+                pts, detail = 0, []
 
             ko_pts += pts
             cum += pts

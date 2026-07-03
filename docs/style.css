@@ -254,18 +254,36 @@ tr.detail-row td { background: var(--s2); padding: 16px 18px; }
   letter-spacing: .08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pchip .pscore { font-family: var(--mono); font-weight: 700; font-size: 1rem; margin-top: 2px; }
 .pchip .ppens { font-family: var(--mono); font-size: .64rem; color: var(--faint); }
-.pchip.exact { border-color: var(--green); background: var(--green-dim); }
-.pchip.exact .pscore { color: var(--green); }
-.pchip.result { border-color: var(--blue); background: var(--blue-dim); }
+.pchip.exact  { border-color: var(--green); background: var(--green-dim); }
+.pchip.exact  .pscore { color: var(--green); }
+.pchip.result { border-color: var(--blue);  background: var(--blue-dim); }
 .pchip.result .pscore { color: var(--blue); }
-.pchip.miss { opacity: .55; }
+.pchip.miss   { opacity: .55; }
+/* KO re-pred point tiers: +2=yellow +5=blue +7=green +9=orange +14=red */
+:root { --yellow: #ca8a04; --yellow-dim: rgba(202,138,4,.1);
+        --orange: #ea580c; --orange-dim: rgba(234,88,12,.1); }
+.pchip.ko5  { border-color: var(--blue);   background: var(--blue-dim); }
+.pchip.ko5  .pscore { color: var(--blue); }
+.pchip.ko7  { border-color: var(--green);  background: var(--green-dim); }
+.pchip.ko7  .pscore { color: var(--green); }
+.pchip.ko9  { border-color: var(--orange); background: var(--orange-dim); }
+.pchip.ko9  .pscore { color: var(--orange); }
+.pchip.ko14 { border-color: var(--red);    background: var(--red-dim); }
+.pchip.ko14 .pscore { color: var(--red); }
+.pchip.ko2  { border-color: var(--yellow); background: var(--yellow-dim); }
+.pchip.ko2  .pscore { color: var(--yellow); }
 .pchip .pbadge {
   position: absolute; top: -8px; right: -5px; font-family: var(--mono);
   font-size: .64rem; font-weight: 700; border-radius: 999px; padding: 1px 7px;
   background: var(--card); border: 1px solid var(--line2); color: var(--muted);
 }
-.pchip.exact .pbadge { background: var(--green); border-color: var(--green); color: #fff; }
-.pchip.result .pbadge { background: var(--blue); border-color: var(--blue); color: #fff; }
+.pchip.exact  .pbadge { background: var(--green);  border-color: var(--green);  color: #fff; }
+.pchip.result .pbadge { background: var(--blue);   border-color: var(--blue);   color: #fff; }
+.pchip.ko5   .pbadge  { background: var(--blue);   border-color: var(--blue);   color: #fff; }
+.pchip.ko7   .pbadge  { background: var(--green);  border-color: var(--green);  color: #fff; }
+.pchip.ko9   .pbadge  { background: var(--orange); border-color: var(--orange); color: #fff; }
+.pchip.ko14  .pbadge  { background: var(--red);    border-color: var(--red);    color: #fff; }
+.pchip.ko2   .pbadge  { background: var(--yellow); border-color: var(--yellow); color: #fff; }
 .legend { color: var(--faint); font-size: .66rem; margin-top: 9px; }
 .legend .sw { display: inline-block; width: 9px; height: 9px; border-radius: 3px;
   margin: 0 4px 0 10px; vertical-align: -1px; }
