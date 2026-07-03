@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-03T01:10:02Z",
+ "fetched_at": "2026-07-03T02:55:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1200,7 +1200,7 @@
   {
    "date": "2026-07-06T19:00Z",
    "stage": "R16",
-   "team1": null,
+   "team1": "Portugal",
    "team2": "Spain",
    "score1": null,
    "score2": null,
