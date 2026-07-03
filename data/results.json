@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-03T20:55:02Z",
+ "fetched_at": "2026-07-03T21:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1115,8 +1115,8 @@
    "score2": 1,
    "pen1": 2,
    "pen2": 4,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "AT&T Stadium"
   },
   {
@@ -1227,7 +1227,7 @@
    "date": "2026-07-07T16:00Z",
    "stage": "R16",
    "team1": null,
-   "team2": null,
+   "team2": "Egypt",
    "score1": null,
    "score2": null,
    "pen1": null,
