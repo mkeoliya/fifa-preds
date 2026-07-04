@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T18:10:01Z",
+ "fetched_at": "2026-07-04T18:15:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1151,7 +1151,7 @@
    "team1": "Canada",
    "team2": "Morocco",
    "score1": 0,
-   "score2": 0,
+   "score2": 1,
    "pen1": null,
    "pen2": null,
    "state": "in",
