@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T03:30:02Z",
+ "fetched_at": "2026-07-04T03:35:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1141,8 +1141,8 @@
    "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "GEHA Field at Arrowhead Stadium"
   },
   {
@@ -1240,7 +1240,7 @@
    "date": "2026-07-07T20:00Z",
    "stage": "R16",
    "team1": "Switzerland",
-   "team2": null,
+   "team2": "Colombia",
    "score1": null,
    "score2": null,
    "pen1": null,
