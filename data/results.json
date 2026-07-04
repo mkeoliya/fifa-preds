@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T01:40:02Z",
+ "fetched_at": "2026-07-04T01:45:03Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1137,7 +1137,7 @@
    "stage": "R32",
    "team1": "Colombia",
    "team2": "Ghana",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
