@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T00:30:02Z",
+ "fetched_at": "2026-07-04T00:35:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1124,7 +1124,7 @@
    "stage": "R32",
    "team1": "Argentina",
    "team2": "Cape Verde",
-   "score1": 2,
+   "score1": 3,
    "score2": 2,
    "pen1": null,
    "pen2": null,
