@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T00:15:02Z",
+ "fetched_at": "2026-07-04T00:20:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1125,7 +1125,7 @@
    "team1": "Argentina",
    "team2": "Cape Verde",
    "score1": 2,
-   "score2": 1,
+   "score2": 2,
    "pen1": null,
    "pen2": null,
    "state": "in",
