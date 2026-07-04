@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T00:45:02Z",
+ "fetched_at": "2026-07-04T01:25:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1226,7 +1226,7 @@
   {
    "date": "2026-07-07T16:00Z",
    "stage": "R16",
-   "team1": null,
+   "team1": "Argentina",
    "team2": "Egypt",
    "score1": null,
    "score2": null,
