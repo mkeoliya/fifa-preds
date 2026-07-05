@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-05T22:05:03Z",
+ "fetched_at": "2026-07-05T23:55:03Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1185,7 +1185,7 @@
    "venue": "MetLife Stadium"
   },
   {
-   "date": "2026-07-06T00:00Z",
+   "date": "2026-07-06T01:00Z",
    "stage": "R16",
    "team1": "Mexico",
    "team2": "England",
@@ -1278,7 +1278,7 @@
   {
    "date": "2026-07-11T21:00Z",
    "stage": "QF",
-   "team1": null,
+   "team1": "Norway",
    "team2": null,
    "score1": null,
    "score2": null,
