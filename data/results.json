@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-05T22:00:09Z",
+ "fetched_at": "2026-07-05T22:05:03Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1176,12 +1176,12 @@
    "stage": "R16",
    "team1": "Brazil",
    "team2": "Norway",
-   "score1": 0,
+   "score1": 1,
    "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "MetLife Stadium"
   },
   {
