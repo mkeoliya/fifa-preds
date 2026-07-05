@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-04T23:05:02Z",
+ "fetched_at": "2026-07-05T12:00:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1252,7 +1252,7 @@
   {
    "date": "2026-07-09T20:00Z",
    "stage": "QF",
-   "team1": null,
+   "team1": "France",
    "team2": "Morocco",
    "score1": null,
    "score2": null,
