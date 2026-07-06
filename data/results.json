@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-06T03:05:02Z",
+ "fetched_at": "2026-07-06T03:10:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1193,8 +1193,8 @@
    "score2": 3,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Estadio Banorte"
   },
   {
@@ -1279,7 +1279,7 @@
    "date": "2026-07-11T21:00Z",
    "stage": "QF",
    "team1": "Norway",
-   "team2": null,
+   "team2": "England",
    "score1": null,
    "score2": null,
    "pen1": null,
