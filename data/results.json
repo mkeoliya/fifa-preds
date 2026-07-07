@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-07T16:00:01Z",
+ "fetched_at": "2026-07-07T16:05:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1228,11 +1228,11 @@
    "stage": "R16",
    "team1": "Argentina",
    "team2": "Egypt",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Mercedes-Benz Stadium"
   },
