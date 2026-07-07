@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-07T18:10:02Z",
+ "fetched_at": "2026-07-07T19:55:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1291,7 +1291,7 @@
   {
    "date": "2026-07-12T01:00Z",
    "stage": "QF",
-   "team1": null,
+   "team1": "Argentina",
    "team2": null,
    "score1": null,
    "score2": null,
