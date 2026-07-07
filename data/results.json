@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-07T20:00:01Z",
+ "fetched_at": "2026-07-07T20:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1241,11 +1241,11 @@
    "stage": "R16",
    "team1": "Switzerland",
    "team2": "Colombia",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "BC Place"
   },
