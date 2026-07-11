@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-11T23:45:01Z",
+ "fetched_at": "2026-07-11T23:50:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1284,8 +1284,8 @@
    "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Hard Rock Stadium"
   },
   {
@@ -1317,7 +1317,7 @@
   {
    "date": "2026-07-15T19:00Z",
    "stage": "SF",
-   "team1": null,
+   "team1": "England",
    "team2": null,
    "score1": null,
    "score2": null,
