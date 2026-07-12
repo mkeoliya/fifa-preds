@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-12T03:40:01Z",
+ "fetched_at": "2026-07-12T03:45:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1293,12 +1293,12 @@
    "stage": "QF",
    "team1": "Argentina",
    "team2": "Switzerland",
-   "score1": 2,
+   "score1": 3,
    "score2": 1,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "GEHA Field at Arrowhead Stadium"
   },
   {
