@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-15T19:00:07Z",
+ "fetched_at": "2026-07-15T19:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1319,11 +1319,11 @@
    "stage": "SF",
    "team1": "England",
    "team2": "Argentina",
-   "score1": null,
-   "score2": null,
+   "score1": 0,
+   "score2": 0,
    "pen1": null,
    "pen2": null,
-   "state": "pre",
+   "state": "in",
    "completed": false,
    "venue": "Mercedes-Benz Stadium"
   },
