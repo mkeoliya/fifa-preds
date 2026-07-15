@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-15T21:00:01Z",
+ "fetched_at": "2026-07-15T21:05:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1323,15 +1323,15 @@
    "score2": 2,
    "pen1": null,
    "pen2": null,
-   "state": "in",
-   "completed": false,
+   "state": "post",
+   "completed": true,
    "venue": "Mercedes-Benz Stadium"
   },
   {
    "date": "2026-07-18T21:00Z",
    "stage": "THIRD",
    "team1": "France",
-   "team2": null,
+   "team2": "England",
    "score1": null,
    "score2": null,
    "pen1": null,
@@ -1344,7 +1344,7 @@
    "date": "2026-07-19T19:00Z",
    "stage": "FINAL",
    "team1": "Spain",
-   "team2": null,
+   "team2": "Argentina",
    "score1": null,
    "score2": null,
    "pen1": null,
