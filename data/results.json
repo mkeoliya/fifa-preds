@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-15T20:15:02Z",
+ "fetched_at": "2026-07-15T20:20:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1319,7 +1319,7 @@
    "stage": "SF",
    "team1": "England",
    "team2": "Argentina",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
