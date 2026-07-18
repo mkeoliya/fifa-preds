@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-18T22:50:01Z",
+ "fetched_at": "2026-07-18T22:55:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1333,7 +1333,7 @@
    "team1": "France",
    "team2": "England",
    "score1": 3,
-   "score2": 4,
+   "score2": 5,
    "pen1": null,
    "pen2": null,
    "state": "in",
