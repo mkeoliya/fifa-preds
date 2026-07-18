@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-18T22:10:02Z",
+ "fetched_at": "2026-07-18T22:15:02Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1332,7 +1332,7 @@
    "stage": "THIRD",
    "team1": "France",
    "team2": "England",
-   "score1": 0,
+   "score1": 1,
    "score2": 4,
    "pen1": null,
    "pen2": null,
