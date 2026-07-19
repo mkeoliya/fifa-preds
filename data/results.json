@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-19T21:40:02Z",
+ "fetched_at": "2026-07-19T21:45:01Z",
  "matches": [
   {
    "date": "2026-06-11T19:00Z",
@@ -1345,7 +1345,7 @@
    "stage": "FINAL",
    "team1": "Spain",
    "team2": "Argentina",
-   "score1": 0,
+   "score1": 1,
    "score2": 0,
    "pen1": null,
    "pen2": null,
