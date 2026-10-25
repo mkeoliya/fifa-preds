@@ -295,3 +295,42 @@ tr.detail-row td { background: var(--s2); padding: 16px 18px; }
   table.lb td { padding: 11px 9px; }
   .totalnum { font-size: 1.05rem; }
 }
+
+/* ---------- final & awards ---------- */
+:root { --gold: #c99a06; --silver: #8b97a3; --bronze: #b4693a; }
+.finalbanner { text-align: center; background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; padding: 18px 16px; box-shadow: var(--shadow); margin-bottom: 22px; }
+.fb-label { color: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .18em; font-weight: 600; }
+.fb-score { font-size: 1.35rem; font-weight: 700; margin: 8px 0 4px; }
+.fb-score b { font-family: var(--mono); padding: 0 8px; }
+.fb-champ { color: var(--green); font-weight: 700; }
+.podium { display: flex; justify-content: center; align-items: flex-end; gap: 10px; margin: 8px 0 26px; }
+.pod { width: 130px; text-align: center; }
+.podname { font-weight: 800; font-size: 1.05rem; }
+.podpts { font-family: var(--mono); color: var(--muted); font-size: .85rem; margin: 2px 0 6px; }
+.podblock { border-radius: 10px 10px 0 0; color: #fff; font-weight: 800; font-size: 1.6rem;
+  display: flex; align-items: center; justify-content: center; }
+.pod1 .podblock { height: 110px; background: linear-gradient(180deg, #e5b81c, var(--gold)); }
+.pod2 .podblock { height: 80px; background: linear-gradient(180deg, #aab4be, var(--silver)); }
+.pod3 .podblock { height: 60px; background: linear-gradient(180deg, #cf8a5c, var(--bronze)); }
+h3.sect { text-align: center; font-size: .8rem; text-transform: uppercase; letter-spacing: .2em;
+  color: var(--muted); margin: 28px 0 12px; }
+.awardgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.acard { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 16px; text-align: center; box-shadow: 0 2px 10px rgba(23, 43, 30, .05); }
+.aw-champion { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201, 154, 6, .18), var(--shadow); }
+.aemoji { font-size: 2rem; line-height: 1; }
+.atitle { color: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .14em;
+  font-weight: 700; margin-top: 8px; }
+.awinner { font-size: 1.35rem; font-weight: 800; margin-top: 4px; }
+.astat { font-family: var(--mono); font-size: .78rem; color: var(--green); margin-top: 2px; }
+.ablurb { color: var(--muted); font-size: .8rem; margin: 8px 0 0; line-height: 1.45; }
+.tab[data-tab="awards"] { --tabcolor: var(--gold); }
+@media (max-width: 640px) {
+  nav#tabs { display: flex; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  nav#tabs .tab { flex: 0 0 auto; padding: 7px 10px; }
+  .sub { letter-spacing: .12em; }
+  .pod { width: 31%; }
+  .podname { font-size: .9rem; }
+  .fb-score { font-size: 1.05rem; }
+}

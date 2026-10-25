@@ -183,12 +183,27 @@ def bonus_for(stage, n_correct):
 
 
 def norm(name):
-    return "".join(ch for ch in (name or "").lower() if ch.isalpha())
+    """Lowercase, strip diacritics and non-letters ("Simón" -> "simon")."""
+    import unicodedata
+    s = unicodedata.normalize("NFKD", name or "")
+    return "".join(ch for ch in s.lower() if ch.isascii() and ch.isalpha())
+
+
+def award_hit(picked, winner):
+    """Loose award match: full name, or surname only ("Mbappe" == "Kylian Mbappé").
+
+    A hedged pick naming several players (e.g. "Unai Simon/Raya") does not match.
+    """
+    if not picked or not winner:
+        return False
+    p = norm(picked)
+    parts = winner.split()
+    return p in {norm(winner), norm(parts[-1])}
 
 
 def main() -> int:
-    results = json.loads(RESULTS.read_text())
-    actuals = json.loads(ACTUALS.read_text()) if ACTUALS.exists() else {}
+    results = json.loads(RESULTS.read_text(encoding="utf-8"))
+    actuals = json.loads(ACTUALS.read_text(encoding="utf-8")) if ACTUALS.exists() else {}
     award_winners = actuals.get("awards", {})
 
     # Load OG picks
@@ -384,7 +399,7 @@ def main() -> int:
         for cat, pts in AWARD_PTS.items():
             picked = getattr(og_pred.awards, cat)
             actual_winner = award_winners.get(cat)
-            hit = bool(actual_winner) and norm(picked) == norm(actual_winner)
+            hit = award_hit(picked, actual_winner)
             if hit:
                 award_pts += pts
             awards_detail[cat] = {"pick": picked, "hit": hit}
@@ -425,14 +440,14 @@ def main() -> int:
         "award_winners": award_winners,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(out, ensure_ascii=False))
+    OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
     picks_out = OUT.parent / "picks.json"
     picks_out.write_text(json.dumps(
-        {name: p.to_dict() for name, p in og_preds.items()}, ensure_ascii=False))
+        {name: p.to_dict() for name, p in og_preds.items()}, ensure_ascii=False), encoding="utf-8")
     # also write re-draft picks for the frontend
     repred_out = OUT.parent / "picks_r32.json"
     repred_out.write_text(json.dumps(
-        {name: p.to_dict() for name, p in repred_preds.items()}, ensure_ascii=False))
+        {name: p.to_dict() for name, p in repred_preds.items()}, ensure_ascii=False), encoding="utf-8")
     print(f"Leaderboard: " + ", ".join(
         f"{p['name']} {p['total']}" for p in players[:5]) + f" ... -> {OUT}")
     return 0

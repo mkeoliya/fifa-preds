@@ -23,18 +23,20 @@ const FLAGS = {
 };
 const flag = t => FLAGS[t] ?? "";
 
-let LB, PICKS, PICKS_R32, KALSHI;
+let LB, PICKS, PICKS_R32, KALSHI, AWARDS;
 
 async function load() {
   const bust = `?t=${Math.floor(Date.now() / 60000)}`;
-  [LB, PICKS, PICKS_R32, KALSHI] = await Promise.all([
+  [LB, PICKS, PICKS_R32, KALSHI, AWARDS] = await Promise.all([
     fetch(`data/leaderboard.json${bust}`).then(r => r.json()),
     fetch(`data/picks.json${bust}`).then(r => r.json()),
     fetch(`data/picks_r32.json${bust}`).then(r => r.json()).catch(() => ({})),
     fetch(`data/kalshi.json${bust}`).then(r => r.json()).catch(() => null),
+    fetch(`data/awards.json${bust}`).then(r => r.json()).catch(() => null),
   ]);
   document.getElementById("updated").textContent =
     `updated ${new Date(LB.updated_at).toLocaleString()}`;
+  renderAwards();
   renderLeaderboard();
   renderRace();
   renderBrackets();
@@ -45,6 +47,72 @@ function winnerProb(team) {
   if (!KALSHI || !KALSHI.winner) return null;
   const row = KALSHI.winner.find(w => w.team === team);
   return row ? row.prob : null;
+}
+
+/* ---------- final & awards ---------- */
+const AWARD_LABEL = { golden_ball: "Golden Ball", golden_boot: "Golden Boot",
+  golden_glove: "Golden Glove", young_player: "Best Young Player" };
+const AWARD_PTS = { golden_ball: 5, golden_boot: 3, golden_glove: 3, young_player: 3 };
+
+function renderAwards() {
+  const el = document.getElementById("awards");
+  if (!AWARDS) {
+    el.innerHTML = `<p class="note">Awards are announced once the tournament ends.</p>`;
+    document.querySelector('[data-tab="leaderboard"]').click();
+    return;
+  }
+  const f = AWARDS.final;
+  const st = AWARDS.standings;
+  const podium = [st[1], st[0], st[2]].filter(Boolean).map(p => `
+    <div class="pod pod${p.rank}">
+      <div class="podname">${p.name}</div>
+      <div class="podpts">${p.total}<small> pts</small></div>
+      <div class="podblock">${p.rank}</div>
+    </div>`).join("");
+
+  const cards = AWARDS.awards.map(a => `
+    <div class="acard aw-${a.id}">
+      <div class="aemoji">${a.emoji}</div>
+      <div class="atitle">${a.title}</div>
+      <div class="awinner">${a.winner}</div>
+      <div class="astat">${a.stat}</div>
+      <p class="ablurb">${a.blurb}</p>
+    </div>`).join("");
+
+  const real = Object.entries(AWARDS.real_awards).map(([cat, who]) => {
+    const hitters = LB.players.filter(p => p.awards[cat]?.hit).map(p => p.name);
+    return `<tr><td>${AWARD_LABEL[cat]} <span class="pts-sub">(+${AWARD_PTS[cat]})</span></td>
+      <td><b>${who ?? "—"}</b></td>
+      <td class="${hitters.length ? "hit" : "miss"}">${hitters.length ? hitters.join(", ") : "nobody"}</td></tr>`;
+  }).join("");
+
+  const rows = st.map(p => `<tr class="${p.rank <= 3 ? "top" + p.rank : ""}">
+    <td><span class="rankbadge">${p.rank}</span></td><td class="who">${p.name}</td>
+    <td class="num">${p.group}</td><td class="num">${p.repred}</td>
+    <td class="num">${p.advancement}</td><td class="num">${p.fixture}</td>
+    <td class="num">${p.awards}</td><td class="num"><b>${p.total}</b></td>
+    <td>${flag(p.champion_pick)} ${p.champion_pick ?? "—"}</td></tr>`).join("");
+
+  el.innerHTML = `
+    <div class="finalbanner">
+      <div class="fb-label">World Cup 2026 Final · ${f.venue ?? ""}</div>
+      <div class="fb-score">${flag(f.team1)} ${f.team1} <b>${f.score1} – ${f.score2}</b> ${f.team2} ${flag(f.team2)}</div>
+      <div class="fb-champ">${flag(f.winner)} ${f.winner} are world champions</div>
+    </div>
+    <div class="podium">${podium}</div>
+    <h3 class="sect">Chepta Cup Awards</h3>
+    <div class="awardgrid">${cards}</div>
+    <h3 class="sect">Tournament individual awards</h3>
+    <div class="lbwrap"><table class="lb realaw"><thead><tr><th>Award</th><th>Winner</th><th>Called it</th></tr></thead>
+      <tbody>${real}</tbody></table></div>
+    <h3 class="sect">Final points breakdown</h3>
+    <div class="lbwrap"><table class="lb final"><thead><tr><th>Rank</th><th>Player</th>
+      <th class="num">Group</th><th class="num">Re-pred KO</th><th class="num">Advance</th>
+      <th class="num">Fixtures</th><th class="num">Awards</th><th class="num">Total</th><th>OG Champion</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
+    <p class="note">Group = OG bracket results &amp; scores · Re-pred KO = Round-of-32 re-draft ·
+      Advance = team advancement R32 to Final (incl. 3 pts per correct finalist) ·
+      Fixtures = +3 per exact OG knockout fixture · Awards = individual award picks.</p>`;
 }
 
 /* ---------- leaderboard ---------- */
@@ -502,7 +570,7 @@ function matchCard(m) {
 }
 
 /* tabs — each carries its own accent color for the page */
-const TAB_ACCENT = { leaderboard: "green", race: "blue", brackets: "red",
+const TAB_ACCENT = { awards: "green", leaderboard: "green", race: "blue", brackets: "red",
   matches: "green" };
 document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));

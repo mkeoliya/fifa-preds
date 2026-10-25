@@ -18,19 +18,21 @@
   <p class="sub">World Cup 2026 · Prediction Rankings</p>
   <div><span class="updated" id="updated"></span></div>
   <nav id="tabs">
-    <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+    <button class="tab active" data-tab="awards">Final &amp; Awards</button>
+    <button class="tab" data-tab="leaderboard">Leaderboard</button>
     <button class="tab" data-tab="race">Points Race</button>
     <button class="tab" data-tab="brackets">Brackets</button>
     <button class="tab" data-tab="matches">Matches</button>
   </nav>
 </header>
 <main>
-  <section id="leaderboard" class="panel active"></section>
+  <section id="awards" class="panel active"></section>
+  <section id="leaderboard" class="panel"></section>
   <section id="race" class="panel"><div class="chartwrap"><canvas id="raceChart"></canvas></div><p class="note">Cumulative match points over completed games (advancement bonuses &amp; awards not shown in the race line, but counted in totals).</p></section>
   <section id="brackets" class="panel"></section>
   <section id="matches" class="panel"></section>
 </main>
-<footer>Live scores via ESPN · market odds via Kalshi · refreshed every 20 min during the tournament</footer>
+<footer>Live scores via ESPN · market odds via Kalshi · tournament complete · final standings</footer>
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,9 +1,13 @@
 {
-  "_comment": "Manually maintained. Fill award winners (template spelling not required; names are compared loosely) once announced at tournament end.",
+  "_comment": "Manually maintained. Fill award winners (template spelling not required; names are compared loosely) once announced at tournament end. spirit_of_the_game is a judgment call, edit freely.",
   "awards": {
-    "golden_ball": null,
-    "golden_boot": null,
-    "golden_glove": null,
-    "young_player": null
+    "golden_ball": "Rodri",
+    "golden_boot": "Kylian Mbappé",
+    "golden_glove": "Unai Simón",
+    "young_player": "Pau Cubarsí"
+  },
+  "spirit_of_the_game": {
+    "name": "Kaku",
+    "reason": "Picked Spain to win it all in the original bracket and stayed loyal in the re-draft while others jumped ship. The only player whose re-draft had the actual champions lifting the trophy."
   }
 }

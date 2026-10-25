@@ -59,6 +59,7 @@ pipeline/
   results.py         ESPN scoreboard -> data/results.json
   kalshi.py          Kalshi market odds -> docs/data/kalshi.json
   scoring.py         picks + results -> docs/data/leaderboard.json + picks.json + picks_r32.json
+  awards.py          leaderboard -> docs/data/awards.json (final podium + Chepta Cup awards)
   test_scoring.py    scoring sanity tests against simulated results
 docs/                static frontend served by GitHub Pages
 pipeline/update.sh   refresh + push script, run by local cron every 20 min
@@ -76,3 +77,18 @@ pipeline/update.sh   refresh + push script, run by local cron every 20 min
   actual match windows, any live match in the last snapshot, and a daily odds sync.
   For a manual refresh run `FORCE=1 pipeline/update.sh`. The script self-disables
   after 2026-07-25.
+
+## Final results & awards
+
+The tournament is over (Spain 1-0 Argentina). `data/actuals.json` holds the official
+individual awards (Rodri, Mbappé, Unai Simón, Pau Cubarsí). Award picks match on full
+name or surname, accent-insensitive; hedged picks naming two players don't score.
+`spirit_of_the_game` in the same file is a hand-picked award.
+
+`pipeline/awards.py` builds the "Final & Awards" tab: champion, re-preds king,
+comeback story (biggest climb after the first group matchday), spirit of the game,
+biggest L (last place) and the Oracle (exact scorelines + individual awards).
+
+```
+python pipeline/scoring.py && python pipeline/awards.py
+```

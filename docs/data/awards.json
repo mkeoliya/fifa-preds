@@ -1,0 +1,250 @@
+{
+ "final": {
+  "team1": "Spain",
+  "team2": "Argentina",
+  "score1": 1,
+  "score2": 0,
+  "winner": "Spain",
+  "venue": "MetLife Stadium"
+ },
+ "real_awards": {
+  "golden_ball": "Rodri",
+  "golden_boot": "Kylian Mbappé",
+  "golden_glove": "Unai Simón",
+  "young_player": "Pau Cubarsí"
+ },
+ "awards": [
+  {
+   "id": "champion",
+   "emoji": "🏆",
+   "title": "Chepta Cup Champion",
+   "winner": "Mayukh",
+   "stat": "446 pts",
+   "blurb": "Top of the table with 446 points, 18 clear of Kaalo."
+  },
+  {
+   "id": "repreds",
+   "emoji": "🔁",
+   "title": "Re-Preds King",
+   "winner": "Mayukh",
+   "stat": "141 KO pts",
+   "blurb": "Most points from the Round-of-32 re-draft: 141, edging Shaun (140)."
+  },
+  {
+   "id": "comeback",
+   "emoji": "📈",
+   "title": "Comeback Story",
+   "winner": "Shaun",
+   "stat": "12th → 5th",
+   "blurb": "Sat 12th on 2026-06-19 and clawed up 7 places to finish 5th."
+  },
+  {
+   "id": "spirit",
+   "emoji": "🤝",
+   "title": "Spirit of the Game",
+   "winner": "Kaku",
+   "stat": "Fair play",
+   "blurb": "Picked Spain to win it all in the original bracket and stayed loyal in the re-draft while others jumped ship. The only player whose re-draft had the actual champions lifting the trophy."
+  },
+  {
+   "id": "biggest_l",
+   "emoji": "🥄",
+   "title": "Biggest L of the Comp",
+   "winner": "Kutu",
+   "stat": "360 pts",
+   "blurb": "Wooden spoon: 14th of 14 with 360 points."
+  },
+  {
+   "id": "oracle",
+   "emoji": "🔮",
+   "title": "The Oracle",
+   "winner": "Mayukh",
+   "stat": "17 perfect calls",
+   "blurb": "10 exact group scorelines, 6 exact knockout scorelines and 1 individual award nailed."
+  }
+ ],
+ "standings": [
+  {
+   "rank": 1,
+   "name": "Mayukh",
+   "total": 446,
+   "group": 255,
+   "repred": 141,
+   "advancement": 29,
+   "fixture": 18,
+   "awards": 3,
+   "champion_pick": "Portugal",
+   "exact_scores": 16,
+   "award_hits": 1
+  },
+  {
+   "rank": 2,
+   "name": "Kaalo",
+   "total": 428,
+   "group": 243,
+   "repred": 129,
+   "advancement": 35,
+   "fixture": 21,
+   "awards": 0,
+   "champion_pick": "Brazil",
+   "exact_scores": 9,
+   "award_hits": 0
+  },
+  {
+   "rank": 3,
+   "name": "Sexy Rijo",
+   "total": 426,
+   "group": 234,
+   "repred": 125,
+   "advancement": 34,
+   "fixture": 33,
+   "awards": 0,
+   "champion_pick": "England",
+   "exact_scores": 16,
+   "award_hits": 0
+  },
+  {
+   "rank": 4,
+   "name": "Majank",
+   "total": 421,
+   "group": 257,
+   "repred": 100,
+   "advancement": 37,
+   "fixture": 27,
+   "awards": 0,
+   "champion_pick": "Spain",
+   "exact_scores": 11,
+   "award_hits": 0
+  },
+  {
+   "rank": 5,
+   "name": "Shaun",
+   "total": 412,
+   "group": 211,
+   "repred": 140,
+   "advancement": 34,
+   "fixture": 21,
+   "awards": 6,
+   "champion_pick": "Portugal",
+   "exact_scores": 12,
+   "award_hits": 2
+  },
+  {
+   "rank": 6,
+   "name": "Manna",
+   "total": 404,
+   "group": 245,
+   "repred": 109,
+   "advancement": 29,
+   "fixture": 18,
+   "awards": 3,
+   "champion_pick": "Portugal",
+   "exact_scores": 15,
+   "award_hits": 1
+  },
+  {
+   "rank": 7,
+   "name": "Upa",
+   "total": 397,
+   "group": 236,
+   "repred": 117,
+   "advancement": 26,
+   "fixture": 12,
+   "awards": 6,
+   "champion_pick": "Spain",
+   "exact_scores": 4,
+   "award_hits": 2
+  },
+  {
+   "rank": 8,
+   "name": "Snacc",
+   "total": 394,
+   "group": 217,
+   "repred": 123,
+   "advancement": 30,
+   "fixture": 24,
+   "awards": 0,
+   "champion_pick": "France",
+   "exact_scores": 8,
+   "award_hits": 0
+  },
+  {
+   "rank": 8,
+   "name": "Vui",
+   "total": 394,
+   "group": 201,
+   "repred": 130,
+   "advancement": 33,
+   "fixture": 27,
+   "awards": 3,
+   "champion_pick": "Argentina",
+   "exact_scores": 7,
+   "award_hits": 1
+  },
+  {
+   "rank": 10,
+   "name": "Kaku",
+   "total": 388,
+   "group": 222,
+   "repred": 102,
+   "advancement": 31,
+   "fixture": 27,
+   "awards": 6,
+   "champion_pick": "Spain",
+   "exact_scores": 7,
+   "award_hits": 2
+  },
+  {
+   "rank": 11,
+   "name": "Frenchie",
+   "total": 386,
+   "group": 190,
+   "repred": 128,
+   "advancement": 32,
+   "fixture": 33,
+   "awards": 3,
+   "champion_pick": "France",
+   "exact_scores": 8,
+   "award_hits": 1
+  },
+  {
+   "rank": 12,
+   "name": "JJ",
+   "total": 379,
+   "group": 219,
+   "repred": 107,
+   "advancement": 29,
+   "fixture": 24,
+   "awards": 0,
+   "champion_pick": "Spain",
+   "exact_scores": 10,
+   "award_hits": 0
+  },
+  {
+   "rank": 13,
+   "name": "Cunt",
+   "total": 364,
+   "group": 212,
+   "repred": 113,
+   "advancement": 27,
+   "fixture": 9,
+   "awards": 3,
+   "champion_pick": "Brazil",
+   "exact_scores": 10,
+   "award_hits": 1
+  },
+  {
+   "rank": 14,
+   "name": "Kutu",
+   "total": 360,
+   "group": 206,
+   "repred": 116,
+   "advancement": 20,
+   "fixture": 18,
+   "awards": 0,
+   "champion_pick": "Portugal",
+   "exact_scores": 13,
+   "award_hits": 0
+  }
+ ]
+}

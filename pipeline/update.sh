@@ -36,6 +36,7 @@ git pull --rebase --autostash --quiet origin main || { git rebase --abort 2>/dev
 python3 pipeline/results.py
 python3 pipeline/kalshi.py
 python3 pipeline/scoring.py
+python3 pipeline/awards.py
 
 git add data/results.json docs/data/
 if git diff --cached --quiet; then
