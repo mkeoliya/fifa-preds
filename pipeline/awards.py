@@ -105,7 +105,7 @@ def main() -> int:
     if spirit.get("name") in by_name:
         awards.append({
             "id": "spirit", "emoji": "🤝", "title": "Spirit of the Game",
-            "winner": spirit["name"], "stat": "Fair play",
+            "winner": spirit["name"], "stat": spirit.get("stat", "Fair play"),
             "blurb": spirit.get("reason", ""),
         })
 
