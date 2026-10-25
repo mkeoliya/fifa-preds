@@ -18,25 +18,25 @@
    "id": "champion",
    "emoji": "🏆",
    "title": "Chepta Cup Champion",
-   "winner": "Mayukh",
-   "stat": "446 pts",
-   "blurb": "Top of the table with 446 points, 18 clear of Kaalo."
+   "winner": "Kaalo",
+   "stat": "428 pts",
+   "blurb": "Top of the table with 428 points, 2 clear of Sexy Rijo."
   },
   {
    "id": "repreds",
    "emoji": "🔁",
    "title": "Re-Preds King",
-   "winner": "Mayukh",
-   "stat": "141 KO pts",
-   "blurb": "Most points from the Round-of-32 re-draft: 141, edging Shaun (140)."
+   "winner": "Shaun",
+   "stat": "140 KO pts",
+   "blurb": "Most points from the Round-of-32 re-draft: 140, edging Vui (130)."
   },
   {
    "id": "comeback",
    "emoji": "📈",
    "title": "Comeback Story",
    "winner": "Shaun",
-   "stat": "12th → 5th",
-   "blurb": "Sat 12th on 2026-06-19 and clawed up 7 places to finish 5th."
+   "stat": "11th → 4th",
+   "blurb": "Sat 11th on 2026-06-19 and clawed up 7 places to finish 4th."
   },
   {
    "id": "spirit",
@@ -52,33 +52,20 @@
    "title": "Biggest L of the Comp",
    "winner": "Cunt",
    "stat": "364 pts",
-   "blurb": "Wooden spoon: 14th of 14 with 364 points."
+   "blurb": "Wooden spoon: 13th of 13 with 364 points."
   },
   {
    "id": "oracle",
    "emoji": "🔮",
    "title": "The Oracle",
-   "winner": "Mayukh",
-   "stat": "17 perfect calls",
-   "blurb": "10 exact group scorelines, 6 exact knockout scorelines and 1 individual award nailed."
+   "winner": "Sexy Rijo",
+   "stat": "16 perfect calls",
+   "blurb": "12 exact group scorelines and 4 exact knockout scorelines nailed."
   }
  ],
  "standings": [
   {
    "rank": 1,
-   "name": "Mayukh",
-   "total": 446,
-   "group": 255,
-   "repred": 141,
-   "advancement": 29,
-   "fixture": 18,
-   "awards": 3,
-   "champion_pick": "Portugal",
-   "exact_scores": 16,
-   "award_hits": 1
-  },
-  {
-   "rank": 2,
    "name": "Kaalo",
    "total": 428,
    "group": 243,
@@ -91,7 +78,7 @@
    "award_hits": 0
   },
   {
-   "rank": 3,
+   "rank": 2,
    "name": "Sexy Rijo",
    "total": 426,
    "group": 234,
@@ -104,7 +91,7 @@
    "award_hits": 0
   },
   {
-   "rank": 4,
+   "rank": 3,
    "name": "Majank",
    "total": 421,
    "group": 257,
@@ -117,7 +104,7 @@
    "award_hits": 0
   },
   {
-   "rank": 5,
+   "rank": 4,
    "name": "Shaun",
    "total": 412,
    "group": 211,
@@ -130,7 +117,7 @@
    "award_hits": 2
   },
   {
-   "rank": 6,
+   "rank": 5,
    "name": "Manna",
    "total": 404,
    "group": 245,
@@ -143,7 +130,7 @@
    "award_hits": 1
   },
   {
-   "rank": 7,
+   "rank": 6,
    "name": "Upa",
    "total": 397,
    "group": 236,
@@ -156,7 +143,7 @@
    "award_hits": 2
   },
   {
-   "rank": 8,
+   "rank": 7,
    "name": "Kutu",
    "total": 396,
    "group": 232,
@@ -169,7 +156,7 @@
    "award_hits": 0
   },
   {
-   "rank": 9,
+   "rank": 8,
    "name": "Snacc",
    "total": 394,
    "group": 217,
@@ -182,7 +169,7 @@
    "award_hits": 0
   },
   {
-   "rank": 9,
+   "rank": 8,
    "name": "Vui",
    "total": 394,
    "group": 201,
@@ -195,7 +182,7 @@
    "award_hits": 1
   },
   {
-   "rank": 11,
+   "rank": 10,
    "name": "Kaku",
    "total": 388,
    "group": 222,
@@ -208,7 +195,7 @@
    "award_hits": 2
   },
   {
-   "rank": 12,
+   "rank": 11,
    "name": "Frenchie",
    "total": 386,
    "group": 190,
@@ -221,7 +208,7 @@
    "award_hits": 1
   },
   {
-   "rank": 13,
+   "rank": 12,
    "name": "JJ",
    "total": 379,
    "group": 219,
@@ -234,7 +221,7 @@
    "award_hits": 0
   },
   {
-   "rank": 14,
+   "rank": 13,
    "name": "Cunt",
    "total": 364,
    "group": 212,

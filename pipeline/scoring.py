@@ -54,6 +54,9 @@ REPRED_PTS_EXACT = 2
 REPRED_PTS_PENS_CALL = 2
 REPRED_PTS_PENS_EXACT = 5
 
+# Players removed from the competition (picks kept on disk, just not scored/shown)
+EXCLUDED_PLAYERS = {"Mayukh"}
+
 # Player-specific zero overrides: these (stage, frozenset_of_teams) score 0 regardless
 ZERO_OVERRIDES: dict[str, set] = {
     "Majank": {("R32", frozenset({"Canada", "South Africa"}))},
@@ -211,6 +214,8 @@ def main() -> int:
     for f in sorted(PICKS_DIR.glob("*.pkl")):
         with open(f, "rb") as fh:
             p = pickle.load(fh)
+        if p.name in EXCLUDED_PLAYERS:
+            continue
         og_preds[p.name] = p
 
     # Load re-draft picks; fall back to OG if not submitted

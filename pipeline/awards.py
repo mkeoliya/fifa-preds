@@ -131,8 +131,9 @@ def main() -> int:
         "id": "oracle", "emoji": "🔮", "title": "The Oracle",
         "winner": orc["name"],
         "stat": f"{g + k + a} perfect calls",
-        "blurb": f"{g} exact group scorelines, {k} exact knockout scorelines and "
-                 f"{a} individual award{'s' if a != 1 else ''} nailed.",
+        "blurb": (f"{g} exact group scorelines, {k} exact knockout scorelines and "
+                  f"{a} individual award{'s' if a != 1 else ''} nailed." if a else
+                  f"{g} exact group scorelines and {k} exact knockout scorelines nailed."),
     })
 
     final = next(m for m in matches if m["stage"] == "FINAL")
