@@ -50,9 +50,9 @@
    "id": "biggest_l",
    "emoji": "🥄",
    "title": "Biggest L of the Comp",
-   "winner": "Kutu",
-   "stat": "360 pts",
-   "blurb": "Wooden spoon: 14th of 14 with 360 points."
+   "winner": "Cunt",
+   "stat": "364 pts",
+   "blurb": "Wooden spoon: 14th of 14 with 364 points."
   },
   {
    "id": "oracle",
@@ -157,6 +157,19 @@
   },
   {
    "rank": 8,
+   "name": "Kutu",
+   "total": 396,
+   "group": 232,
+   "repred": 126,
+   "advancement": 20,
+   "fixture": 18,
+   "awards": 0,
+   "champion_pick": "Portugal",
+   "exact_scores": 16,
+   "award_hits": 0
+  },
+  {
+   "rank": 9,
    "name": "Snacc",
    "total": 394,
    "group": 217,
@@ -169,7 +182,7 @@
    "award_hits": 0
   },
   {
-   "rank": 8,
+   "rank": 9,
    "name": "Vui",
    "total": 394,
    "group": 201,
@@ -182,7 +195,7 @@
    "award_hits": 1
   },
   {
-   "rank": 10,
+   "rank": 11,
    "name": "Kaku",
    "total": 388,
    "group": 222,
@@ -195,7 +208,7 @@
    "award_hits": 2
   },
   {
-   "rank": 11,
+   "rank": 12,
    "name": "Frenchie",
    "total": 386,
    "group": 190,
@@ -208,7 +221,7 @@
    "award_hits": 1
   },
   {
-   "rank": 12,
+   "rank": 13,
    "name": "JJ",
    "total": 379,
    "group": 219,
@@ -221,7 +234,7 @@
    "award_hits": 0
   },
   {
-   "rank": 13,
+   "rank": 14,
    "name": "Cunt",
    "total": 364,
    "group": 212,
@@ -232,19 +245,6 @@
    "champion_pick": "Brazil",
    "exact_scores": 10,
    "award_hits": 1
-  },
-  {
-   "rank": 14,
-   "name": "Kutu",
-   "total": 360,
-   "group": 206,
-   "repred": 116,
-   "advancement": 20,
-   "fixture": 18,
-   "awards": 0,
-   "champion_pick": "Portugal",
-   "exact_scores": 13,
-   "award_hits": 0
   }
  ]
 }
